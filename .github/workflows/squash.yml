@@ -1,0 +1,35 @@
+name: Squash
+
+on:
+
+  schedule:
+    - cron:  '0 0 * * *' # at the end of every day
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-20.04
+    env:
+
+      RELEASE_KEY: ${{ secrets.RELEASE_KEY }}
+      PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
+
+    steps:
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # fetch the whole history
+
+      - name: Checkout CI scripts
+        uses: actions/checkout@v3
+        with:
+          repository: ctu-mrs/ci_scripts
+          path: .ci_scripts
+          token: ${{ secrets.PUSH_TOKEN }}
+
+      - name: Squash debs
+        if: "!contains(github.event.head_commit.message, 'squashed')"
+        run: .ci_scripts/ppa_maintanance/squash_branch.sh github.com/ctu-mrs/ppa-unstable debs
