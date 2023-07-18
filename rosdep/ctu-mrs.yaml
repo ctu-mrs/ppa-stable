@@ -1,0 +1,5 @@
+# USE DASHES INSIDE THE DEP LIST INSTEAD OF UNDERSCORES
+mrs_msgs:
+  ubuntu: [ros-noetic-mrs-msgs]
+mrs_lib:
+  ubuntu: [ros-noetic-mrs-lib]
