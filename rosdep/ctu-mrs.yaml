@@ -3,3 +3,7 @@ mrs_msgs:
   ubuntu: [ros-noetic-mrs-msgs]
 mrs_lib:
   ubuntu: [ros-noetic-mrs-lib]
+mrs_uav_managers:
+  ubuntu: [ros-noetic-mrs-uav-managers]
+tf2:
+  ubuntu: [ros-noetic-tf2]
