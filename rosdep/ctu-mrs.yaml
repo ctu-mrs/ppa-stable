@@ -5,5 +5,7 @@ mrs_lib:
   ubuntu: [ros-noetic-mrs-lib]
 mrs_uav_managers:
   ubuntu: [ros-noetic-mrs-uav-managers]
+mrs_uav_general:
+  ubuntu: [ros-noetic-mrs-uav-general]
 tf2:
   ubuntu: [ros-noetic-tf2]
