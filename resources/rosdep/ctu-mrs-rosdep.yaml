@@ -9,3 +9,5 @@ mrs_uav_general:
   ubuntu: [ros-noetic-mrs-uav-general]
 tf2:
   ubuntu: [ros-noetic-tf2]
+nlopt_ros:
+  ubuntu: [nlopt-ros]
