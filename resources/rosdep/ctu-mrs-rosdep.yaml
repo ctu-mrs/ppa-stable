@@ -5,8 +5,16 @@ mrs_lib:
   ubuntu: [ros-noetic-mrs-lib]
 mrs_uav_managers:
   ubuntu: [ros-noetic-mrs-uav-managers]
+mrs_uav_trackers:
+  ubuntu: [ros-noetic-mrs-uav-trackers]
+mrs_uav_controllers:
+  ubuntu: [ros-noetic-mrs-uav-controllers]
 mrs_uav_general:
   ubuntu: [ros-noetic-mrs-uav-general]
+mrs_uav_hw_api:
+  ubuntu: [ros-noetic-mrs-uav-hw-api]
+mrs_multirotor_simulator:
+  ubuntu: [ros-noetic-mrs-multirotor-simulator]
 tf2:
   ubuntu: [ros-noetic-tf2]
 nlopt_ros:
