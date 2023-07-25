@@ -11,6 +11,8 @@ mrs_uav_controllers:
   ubuntu: [ros-noetic-mrs-uav-controllers]
 mrs_uav_general:
   ubuntu: [ros-noetic-mrs-uav-general]
+mrs_uav_trajectory_generation:
+  ubuntu: [ros-noetic-mrs-uav-trajectory-generation]
 mrs_uav_hw_api:
   ubuntu: [ros-noetic-mrs-uav-hw-api]
 mrs_uav_state_estimators:
