@@ -39,3 +39,5 @@ mrs-uav-shell-additions:
   ubuntu: [mrs-uav-shell-additions]
 tmuxinator:
   ubuntu: [tmuxinator]
+mav_system_msgs:
+  ubuntu: [ros-noetic-mav-system-msgs]
