@@ -17,6 +17,8 @@ mrs_uav_state_estimators:
   ubuntu: [ros-noetic-mrs-uav-state-estimators]
 mrs_uav_rviz_plugins:
   ubuntu: [ros-noetic-mrs-rviz-plugins]
+mrs_uav_testing:
+  ubuntu: [ros-noetic-mrs-uav-testing]
 mrs_multirotor_simulator:
   ubuntu: [ros-noetic-mrs-multirotor-simulator]
 nlopt_ros:
