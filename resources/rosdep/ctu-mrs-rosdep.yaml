@@ -1,4 +1,10 @@
-# USE DASHES INSIDE THE DEP LIST INSTEAD OF UNDERSCORES
+# this file defines the list of APT dependencies for ROS packages
+# 
+# ros_package_name:
+#   ubuntu: [apt dependencies]
+#
+mrs_uav_core:
+  ubuntu: [mrs-uav-core]
 mrs_msgs:
   ubuntu: [ros-noetic-mrs-msgs]
 mrs_lib:
@@ -29,3 +35,5 @@ nlopt_ros:
   ubuntu: [ros-noetic-nlopt-ros]
 mrs-uav-shell-additions:
   ubuntu: [mrs-uav-shell-additions]
+tmuxinator:
+  ubuntu: [tmuxinator]
