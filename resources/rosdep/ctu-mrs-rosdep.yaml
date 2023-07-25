@@ -13,9 +13,13 @@ mrs_uav_general:
   ubuntu: [ros-noetic-mrs-uav-general]
 mrs_uav_hw_api:
   ubuntu: [ros-noetic-mrs-uav-hw-api]
+mrs_uav_state_estimators:
+  ubuntu: [ros-noetic-mrs-uav-state-estimators]
+mrs_uav_rviz_plugins:
+  ubuntu: [ros-noetic-mrs-rviz-plugins]
 mrs_multirotor_simulator:
   ubuntu: [ros-noetic-mrs-multirotor-simulator]
-tf2:
-  ubuntu: [ros-noetic-tf2]
 nlopt_ros:
   ubuntu: [ros-noetic-nlopt-ros]
+mrs-uav-shell-additions:
+  ubuntu: [mrs-uav-shell-additions]
