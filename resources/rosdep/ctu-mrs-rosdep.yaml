@@ -41,3 +41,7 @@ tmuxinator:
   ubuntu: [tmuxinator]
 mav_system_msgs:
   ubuntu: [ros-noetic-mav-system-msgs]
+mav_msgs:
+  ubuntu: [ros-noetic-mav-msgs]
+mav_state_machine_msgs:
+  ubuntu: [ros-noetic-mav-state-machine-msgs]
