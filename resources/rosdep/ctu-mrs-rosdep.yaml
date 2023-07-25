@@ -31,6 +31,8 @@ mrs_uav_status:
   ubuntu: [ros-noetic-mrs-uav-status]
 mrs_multirotor_simulator:
   ubuntu: [ros-noetic-mrs-multirotor-simulator]
+mrs_uav_px4_api:
+  ubuntu: [ros-noetic-mrs-uav-px4-api]
 nlopt_ros:
   ubuntu: [ros-noetic-nlopt-ros]
 mrs-uav-shell-additions:
