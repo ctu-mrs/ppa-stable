@@ -17,7 +17,7 @@ mrs_uav_hw_api:
   ubuntu: [ros-noetic-mrs-uav-hw-api]
 mrs_uav_state_estimators:
   ubuntu: [ros-noetic-mrs-uav-state-estimators]
-mrs_uav_rviz_plugins:
+mrs_rviz_plugins:
   ubuntu: [ros-noetic-mrs-rviz-plugins]
 mrs_uav_testing:
   ubuntu: [ros-noetic-mrs-uav-testing]
