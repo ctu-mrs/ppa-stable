@@ -45,6 +45,8 @@ tmuxinator:
   ubuntu: [tmuxinator]
 mav_system_msgs:
   ubuntu: [ros-noetic-mav-system-msgs]
+mrs_gazebo_common_resources:
+  ubuntu: [ros-noetic-mrs-gazebo-common-resources]
 mav_msgs:
   ubuntu: [ros-noetic-mav-msgs]
 mav_comm:
