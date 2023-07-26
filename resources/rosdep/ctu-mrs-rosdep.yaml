@@ -45,6 +45,8 @@ px4:
   ubuntu: [ros-noetic-px4]
 tmuxinator:
   ubuntu: [tmuxinator]
+mrs-geographiclib-get-datasets:
+  ubuntu: [mrs-geographiclib-get-datasets]
 mav_system_msgs:
   ubuntu: [ros-noetic-mav-system-msgs]
 mrs_gazebo_common_resources:
