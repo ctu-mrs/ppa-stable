@@ -43,6 +43,8 @@ mavlink_sitl_gazebo:
   ubuntu: [ros-noetic-mavlink-sitl-gazebo]
 px4:
   ubuntu: [ros-noetic-px4]
+python3-jinja2:
+  ubuntu: [python3-jinja2]
 tmuxinator:
   ubuntu: [tmuxinator]
 mrs-geographiclib-datasets:
