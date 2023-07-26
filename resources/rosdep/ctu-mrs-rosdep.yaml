@@ -37,6 +37,10 @@ nlopt_ros:
   ubuntu: [ros-noetic-nlopt-ros]
 mrs-uav-shell-additions:
   ubuntu: [mrs-uav-shell-additions]
+mavlink_sitl_gazebo:
+  ubuntu: [ros-noetic-mavlink-sitl-gazebo]
+px4:
+  ubuntu: [ros-noetic-px4]
 tmuxinator:
   ubuntu: [tmuxinator]
 mav_system_msgs:
