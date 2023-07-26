@@ -5,6 +5,8 @@
 #
 mrs_uav_core:
   ubuntu: [mrs-uav-core]
+mrs_uav_gazebo_simulation:
+  ubuntu: [mrs-uav-gazebo-simulation]
 mrs_msgs:
   ubuntu: [ros-noetic-mrs-msgs]
 mrs_lib:
