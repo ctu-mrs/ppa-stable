@@ -3,57 +3,26 @@
 # ros_package_dependency:
 #   ubuntu: [apt dependencies]
 #
-# mrs_uav_core:
-#   ubuntu: [mrs-uav-core]
-# mrs_uav_gazebo_simulation:
-#   ubuntu: [mrs-uav-gazebo-simulation]
-# mrs_msgs:
-#   ubuntu: [ros-noetic-mrs-msgs]
-# mrs_lib:
-#   ubuntu: [ros-noetic-mrs-lib]
-# mrs_uav_managers:
-#   ubuntu: [ros-noetic-mrs-uav-managers]
-# mrs_uav_trackers:
-#   ubuntu: [ros-noetic-mrs-uav-trackers]
-# mrs_uav_controllers:
-#   ubuntu: [ros-noetic-mrs-uav-controllers]
-# mrs_uav_general:
-#   ubuntu: [ros-noetic-mrs-uav-general]
-# mrs_uav_trajectory_generation:
-#   ubuntu: [ros-noetic-mrs-uav-trajectory-generation]
-# mrs_uav_hw_api:
-#   ubuntu: [ros-noetic-mrs-uav-hw-api]
-# mrs_uav_state_estimators:
-#   ubuntu: [ros-noetic-mrs-uav-state-estimators]
-# mrs_rviz_plugins:
-#   ubuntu: [ros-noetic-mrs-rviz-plugins]
-# mrs_uav_testing:
-#   ubuntu: [ros-noetic-mrs-uav-testing]
-# mrs_uav_status:
-#   ubuntu: [ros-noetic-mrs-uav-status]
-# mrs_multirotor_simulator:
-#   ubuntu: [ros-noetic-mrs-multirotor-simulator]
-# mrs_uav_px4_api:
-#   ubuntu: [ros-noetic-mrs-uav-px4-api]
-# mavlink_sitl_gazebo:
-#   ubuntu: [ros-noetic-mavlink-sitl-gazebo]
-# mrs_gazebo_common_resources:
-#   ubuntu: [ros-noetic-mrs-gazebo-common-resources]
 
+# ROS dependencies supplied by MRS
 nlopt_ros:
   ubuntu: [ros-noetic-nlopt-ros]
-mrs-uav-shell-additions:
-  ubuntu: [mrs-uav-shell-additions]
 px4:
   ubuntu: [ros-noetic-px4]
+
+# non-ROS dependencies managed by MRS
+mrs-geographiclib-datasets:
+  ubuntu: [mrs-geographiclib-datasets]
+mrs-uav-shell-additions:
+  ubuntu: [mrs-uav-shell-additions]
+
+# other dependencies
 python3-jinja2:
   ubuntu: [python3-jinja2]
 tmuxinator:
   ubuntu: [tmuxinator]
-mrs-geographiclib-datasets:
-  ubuntu: [mrs-geographiclib-datasets]
 
-# ETH's k
+# ETH's mav_comm, required for PX4
 mav_system_msgs:
   ubuntu: [ros-noetic-mav-system-msgs]
 mav_msgs:
