@@ -5,8 +5,8 @@
 #
 
 # ROS dependencies supplied by MRS
-nlopt_ros:
-  ubuntu: [ros-noetic-nlopt-ros]
+nlopt:
+  ubuntu: [ros-noetic-nlopt]
 px4:
   ubuntu: [ros-noetic-px4]
 
