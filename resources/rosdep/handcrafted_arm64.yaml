@@ -3,3 +3,6 @@
 # ros_package_dependency:
 #   ubuntu: [apt dependencies]
 #
+
+dummy_node_to_have_something_here:
+  ubuntu: [dummy_node_to_have_something_here]
