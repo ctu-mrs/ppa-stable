@@ -10,6 +10,9 @@ nlopt:
 px4:
   ubuntu: [ros-noetic-px4]
 
+mrs_uav_dji_tello_api:
+  ubuntu: [mrs-uav-dji-tello-api]
+
 # non-ROS dependencies managed by MRS
 mrs-geographiclib-datasets:
   ubuntu: [mrs-geographiclib-datasets]
