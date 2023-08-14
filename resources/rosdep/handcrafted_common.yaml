@@ -29,6 +29,8 @@ mrs_utils:
   ubuntu: [ros-noetic-mrs-utils]
 mrs_uav_modules:
   ubuntu: [ros-noetic-mrs-uav-modules]
+mrs_serial:
+  ubuntu: [ros-noetic-mrs-serial]
 
 # non-ROS dependencies managed by MRS
 mrs-geographiclib-datasets:
