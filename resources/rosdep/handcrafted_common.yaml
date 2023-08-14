@@ -25,6 +25,8 @@ tf_estimator:
   ubuntu: [ros-noetic-tf-estimator]
 tf_reconfigure:
   ubuntu: [ros-noetic-tf-reconfigure]
+mrs_uav_modules:
+  ubuntu: [ros-noetic-mrs-uav-modules]
 
 # non-ROS dependencies managed by MRS
 mrs-geographiclib-datasets:
