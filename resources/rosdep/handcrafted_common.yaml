@@ -9,7 +9,10 @@ nlopt:
   ubuntu: [ros-noetic-nlopt]
 px4:
   ubuntu: [ros-noetic-px4]
-
+mrs_uav_trajectory_loader:
+  ubuntu: [mrs-uav-trajectory-loader]
+mrs_uav_path_loader:
+  ubuntu: [mrs-uav-path-loader]
 mrs_uav_dji_tello_api:
   ubuntu: [mrs-uav-dji-tello-api]
 
