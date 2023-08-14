@@ -10,11 +10,21 @@ nlopt:
 px4:
   ubuntu: [ros-noetic-px4]
 mrs_uav_trajectory_loader:
-  ubuntu: [mrs-uav-trajectory-loader]
+  ubuntu: [ros-noetic-mrs-uav-trajectory-loader]
 mrs_uav_path_loader:
-  ubuntu: [mrs-uav-path-loader]
+  ubuntu: [ros-noetic-mrs-uav-path-loader]
 mrs_uav_dji_tello_api:
-  ubuntu: [mrs-uav-dji-tello-api]
+  ubuntu: [ros-noetic-mrs-uav-dji-tello-api]
+euler_counter_example:
+  ubuntu: [ros-noetic-euler-counter-example]
+multireconfigure:
+  ubuntu: [ros-noetic-multireconfigure]
+tf_connector:
+  ubuntu: [ros-noetic-tf-connector]
+tf_estimator:
+  ubuntu: [ros-noetic-tf-estimator]
+tf_reconfigure:
+  ubuntu: [ros-noetic-tf-reconfigure]
 
 # non-ROS dependencies managed by MRS
 mrs-geographiclib-datasets:
