@@ -32,4 +32,4 @@ jobs:
 
       - name: Squash debs
         if: "!contains(github.event.head_commit.message, 'squashed')"
-        run: .ci_scripts/ppa_maintanance/squash_branch.sh github.com/ctu-mrs/ppa-unstable debs
+        run: .ci_scripts/ppa_maintanance/squash_branch.sh github.com/ctu-mrs/ppa-stable debs

@@ -35,13 +35,13 @@ jobs:
       - name: Checkout PPA debs
         uses: actions/checkout@v3
         with:
-          repository: ctu-mrs/ppa-unstable
+          repository: ctu-mrs/ppa-stable
           path: .debs
           ref: debs
           token: ${{ secrets.PUSH_TOKEN }}
 
       - name: Release
-        run: .ci_scripts/ppa_maintanance/release.sh unstable from-master-branch
+        run: .ci_scripts/ppa_maintanance/release.sh stable from-master-branch
 
       - name: Push
         uses: peaceiris/actions-gh-pages@v3
