@@ -1,3 +1,3 @@
-yaml https://ctu-mrs.github.io/ppa-unstable/generated_arm64.yaml
-yaml https://ctu-mrs.github.io/ppa-unstable/handcrafted_arm64.yaml
-yaml https://ctu-mrs.github.io/ppa-unstable/handcrafted_common.yaml
+yaml https://ctu-mrs.github.io/ppa-stable/generated_arm64.yaml
+yaml https://ctu-mrs.github.io/ppa-stable/handcrafted_arm64.yaml
+yaml https://ctu-mrs.github.io/ppa-stable/handcrafted_common.yaml
