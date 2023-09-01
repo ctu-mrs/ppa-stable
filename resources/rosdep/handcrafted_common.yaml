@@ -31,6 +31,10 @@ mrs_uav_modules:
   ubuntu: [ros-noetic-mrs-uav-modules]
 mrs_serial:
   ubuntu: [ros-noetic-mrs-serial]
+mavlink_sitl_gazebo:
+  ubuntu: [ros-noetic-mavlink-sitl-gazebo]
+mrs_gazebo_common_resources:
+  ubuntu: [ros-noetic-mrs-gazebo-common-resources]
 
 # non-ROS dependencies managed by MRS
 mrs-geographiclib-datasets:
@@ -41,6 +45,8 @@ mrs-uav-shell-additions:
 # other dependencies
 python3-jinja2:
   ubuntu: [python3-jinja2]
+python-is-python3:
+  ubuntu: [python-is-python3]
 tmuxinator:
   ubuntu: [tmuxinator]
 
