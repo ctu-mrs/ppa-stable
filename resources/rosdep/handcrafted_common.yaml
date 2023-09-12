@@ -35,6 +35,8 @@ mavlink_sitl_gazebo:
   ubuntu: [ros-noetic-mavlink-sitl-gazebo]
 mrs_gazebo_common_resources:
   ubuntu: [ros-noetic-mrs-gazebo-common-resources]
+ouster_ros:
+  ubuntu: [ros-noetic-ouster-ros]
 
 # non-ROS dependencies managed by MRS
 mrs-geographiclib-datasets:
