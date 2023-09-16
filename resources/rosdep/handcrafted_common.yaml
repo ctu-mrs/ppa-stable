@@ -9,32 +9,8 @@ nlopt:
   ubuntu: [ros-noetic-nlopt]
 px4:
   ubuntu: [ros-noetic-px4]
-mrs_uav_trajectory_loader:
-  ubuntu: [ros-noetic-mrs-uav-trajectory-loader]
-mrs_uav_path_loader:
-  ubuntu: [ros-noetic-mrs-uav-path-loader]
-mrs_uav_dji_tello_api:
-  ubuntu: [ros-noetic-mrs-uav-dji-tello-api]
-euler_counter_example:
-  ubuntu: [ros-noetic-euler-counter-example]
-multireconfigure:
-  ubuntu: [ros-noetic-multireconfigure]
-tf_connector:
-  ubuntu: [ros-noetic-tf-connector]
-tf_estimator:
-  ubuntu: [ros-noetic-tf-estimator]
-tf_reconfigure:
-  ubuntu: [ros-noetic-tf-reconfigure]
-mrs_utils:
-  ubuntu: [ros-noetic-mrs-utils]
-mrs_uav_modules:
-  ubuntu: [ros-noetic-mrs-uav-modules]
-mrs_serial:
-  ubuntu: [ros-noetic-mrs-serial]
 mavlink_sitl_gazebo:
   ubuntu: [ros-noetic-mavlink-sitl-gazebo]
-mrs_gazebo_common_resources:
-  ubuntu: [ros-noetic-mrs-gazebo-common-resources]
 ouster_ros:
   ubuntu: [ros-noetic-ouster-ros]
 

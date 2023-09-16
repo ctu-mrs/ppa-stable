@@ -2,6 +2,8 @@
 
 Personal Package Archive (PPA) for stable MRS deb packages.
 
+## Adding the PPA
+
 ```bash
 curl https://ctu-mrs.github.io/ppa-stable/add_ppa.sh | bash
 ```
@@ -11,4 +13,10 @@ curl https://ctu-mrs.github.io/ppa-stable/add_ppa.sh | bash
 ```bash
 sudo apt-get -y install aptitude
 sudo apt remove $(aptitude search -F '%p' '~S ~i ?origin("ctu-mrs") ?label("stable")')
+```
+
+## Removing the PPA
+
+```bash
+curl https://ctu-mrs.github.io/ppa-stable/remove_ppa.sh | bash
 ```
