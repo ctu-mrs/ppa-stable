@@ -9,10 +9,6 @@ nlopt:
   ubuntu: [ros-noetic-nlopt]
 px4:
   ubuntu: [ros-noetic-px4]
-mavlink_sitl_gazebo:
-  ubuntu: [ros-noetic-mavlink-sitl-gazebo]
-ouster_ros:
-  ubuntu: [ros-noetic-ouster-ros]
 
 # non-ROS dependencies managed by MRS
 mrs-geographiclib-datasets:
@@ -27,15 +23,3 @@ python-is-python3:
   ubuntu: [python-is-python3]
 tmuxinator:
   ubuntu: [tmuxinator]
-
-# ETH's mav_comm, required for PX4
-mav_system_msgs:
-  ubuntu: [ros-noetic-mav-system-msgs]
-mav_msgs:
-  ubuntu: [ros-noetic-mav-msgs]
-mav_comm:
-  ubuntu: [ros-noetic-mav-comm]
-mav_state_machine_msgs:
-  ubuntu: [ros-noetic-mav-state-machine-msgs]
-mav_planning_msgs:
-  ubuntu: [ros-noetic-mav-planning-msgs]

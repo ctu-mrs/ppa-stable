@@ -6,22 +6,3 @@
 
 dummy_node_to_have_something_here:
   ubuntu: [dummy_node_to_have_something_here]
-
-nimbro_cam_transport:
-  ubuntu: [ros-noetic-nimbro-cam-transport]
-
-nimbro_log_transport:
-  ubuntu: [ros-noetic-nimbro-log-transport]
-
-nimbro_service_transport:
-  ubuntu: [ros-noetic-nimbro-service-transport]
-
-nimbro_tf_throttle:
-  ubuntu: [ros-noetic-nimbro-tf-throttle]
-
-nimbro_topic_transport:
-  ubuntu: [ros-noetic-nimbro-topic-transport]
-
-nimbro_net_monitor:
-  ubuntu: [ros-noetic-nimbro-net-monitor]
-
