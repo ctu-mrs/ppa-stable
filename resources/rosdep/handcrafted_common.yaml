@@ -4,9 +4,7 @@
 #   ubuntu: [apt dependencies]
 #
 
-# ROS dependencies supplied by MRS
-nlopt:
-  ubuntu: [ros-noetic-nlopt]
+# px4 is build using a custom script outside of the bloom pipeline
 px4:
   ubuntu: [ros-noetic-px4]
 
