@@ -23,8 +23,3 @@ python-is-python3:
   ubuntu: [python-is-python3]
 tmuxinator:
   ubuntu: [tmuxinator]
-
-pip-av:
-  ubuntu:
-    pip:
-      packages: [av]
