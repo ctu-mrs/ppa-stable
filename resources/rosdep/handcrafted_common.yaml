@@ -23,3 +23,5 @@ python-is-python3:
   ubuntu: [python-is-python3]
 tmuxinator:
   ubuntu: [tmuxinator]
+moreutils:
+  ubuntu: [moreutils]
