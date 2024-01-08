@@ -1,0 +1,171 @@
+geometry2:
+    ubuntu: [ros-noetic-geometry2]
+  
+tf2_msgs:
+    ubuntu: [ros-noetic-tf2-msgs]
+  
+tf2:
+    ubuntu: [ros-noetic-tf2]
+  
+tf2_bullet:
+    ubuntu: [ros-noetic-tf2-bullet]
+  
+tf2_eigen:
+    ubuntu: [ros-noetic-tf2-eigen]
+  
+tf2_py:
+    ubuntu: [ros-noetic-tf2-py]
+  
+tf2_ros:
+    ubuntu: [ros-noetic-tf2-ros]
+  
+tf2_geometry_msgs:
+    ubuntu: [ros-noetic-tf2-geometry-msgs]
+  
+tf2_kdl:
+    ubuntu: [ros-noetic-tf2-kdl]
+  
+test_tf2:
+    ubuntu: [ros-noetic-test-tf2]
+  
+tf2_sensor_msgs:
+    ubuntu: [ros-noetic-tf2-sensor-msgs]
+  
+tf2_tools:
+    ubuntu: [ros-noetic-tf2-tools]
+  
+libmavconn:
+    ubuntu: [ros-noetic-libmavconn]
+  
+mavros_msgs:
+    ubuntu: [ros-noetic-mavros-msgs]
+  
+mavros:
+    ubuntu: [ros-noetic-mavros]
+  
+mavros_extras:
+    ubuntu: [ros-noetic-mavros-extras]
+  
+test_mavros:
+    ubuntu: [ros-noetic-test-mavros]
+  
+mav_comm:
+    ubuntu: [ros-noetic-mav-comm]
+  
+mav_msgs:
+    ubuntu: [ros-noetic-mav-msgs]
+  
+mav_planning_msgs:
+    ubuntu: [ros-noetic-mav-planning-msgs]
+  
+mav_state_machine_msgs:
+    ubuntu: [ros-noetic-mav-state-machine-msgs]
+  
+mav_system_msgs:
+    ubuntu: [ros-noetic-mav-system-msgs]
+  
+nlopt:
+    ubuntu: [ros-noetic-nlopt]
+  
+ov_core:
+    ubuntu: [ros-noetic-ov-core]
+  
+ov_eval:
+    ubuntu: [ros-noetic-ov-eval]
+  
+ov_init:
+    ubuntu: [ros-noetic-ov-init]
+  
+ov_msckf:
+    ubuntu: [ros-noetic-ov-msckf]
+  
+ros_comm:
+    ubuntu: [ros-noetic-ros-comm]
+  
+rosgraph:
+    ubuntu: [ros-noetic-rosgraph]
+  
+roslaunch:
+    ubuntu: [ros-noetic-roslaunch]
+  
+roslz4:
+    ubuntu: [ros-noetic-roslz4]
+  
+rosmaster:
+    ubuntu: [ros-noetic-rosmaster]
+  
+rosparam:
+    ubuntu: [ros-noetic-rosparam]
+  
+rospy:
+    ubuntu: [ros-noetic-rospy]
+  
+rosservice:
+    ubuntu: [ros-noetic-rosservice]
+  
+rostest:
+    ubuntu: [ros-noetic-rostest]
+  
+xmlrpcpp:
+    ubuntu: [ros-noetic-xmlrpcpp]
+  
+roscpp:
+    ubuntu: [ros-noetic-roscpp]
+  
+rosout:
+    ubuntu: [ros-noetic-rosout]
+  
+message_filters:
+    ubuntu: [ros-noetic-message-filters]
+  
+rosbag_storage:
+    ubuntu: [ros-noetic-rosbag-storage]
+  
+rosmsg:
+    ubuntu: [ros-noetic-rosmsg]
+  
+rosnode:
+    ubuntu: [ros-noetic-rosnode]
+  
+rostopic:
+    ubuntu: [ros-noetic-rostopic]
+  
+topic_tools:
+    ubuntu: [ros-noetic-topic-tools]
+  
+rosbag:
+    ubuntu: [ros-noetic-rosbag]
+  
+roswtf:
+    ubuntu: [ros-noetic-roswtf]
+  
+nimbro_cam_transport:
+    ubuntu: [ros-noetic-nimbro-cam-transport]
+  
+nimbro_log_transport:
+    ubuntu: [ros-noetic-nimbro-log-transport]
+  
+nimbro_net_monitor:
+    ubuntu: [ros-noetic-nimbro-net-monitor]
+  
+nimbro_service_transport:
+    ubuntu: [ros-noetic-nimbro-service-transport]
+  
+nimbro_tf_throttle:
+    ubuntu: [ros-noetic-nimbro-tf-throttle]
+  
+nimbro_topic_transport:
+    ubuntu: [ros-noetic-nimbro-topic-transport]
+  
+nimbro_network:
+    ubuntu: [ros-noetic-nimbro-network]
+  
+hector_mapping:
+    ubuntu: [ros-noetic-hector-mapping]
+  
+mavlink_sitl_gazebo:
+    ubuntu: [ros-noetic-mavlink-sitl-gazebo]
+  
+ouster_ros:
+    ubuntu: [ros-noetic-ouster-ros]
+  
