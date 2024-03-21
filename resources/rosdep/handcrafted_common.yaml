@@ -25,3 +25,6 @@ moreutils:
   ubuntu: [moreutils]
 libgbm-dev:
   ubuntu: [libgbm-dev]
+
+gdb:
+  ubuntu: [gdb]
