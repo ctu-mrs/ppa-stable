@@ -14,6 +14,9 @@ mrs-geographiclib-datasets:
 mrs-uav-shell-additions:
   ubuntu: [mrs-uav-shell-additions]
 
+libcamera:
+  ubuntu: [ros-noetic-libcamera]
+
 # other dependencies
 python3-jinja2:
   ubuntu: [python3-jinja2]
@@ -25,6 +28,7 @@ moreutils:
   ubuntu: [moreutils]
 libgbm-dev:
   ubuntu: [libgbm-dev]
-
+aptitude:
+  ubuntu: [aptitude]
 gdb:
   ubuntu: [gdb]
