@@ -1,0 +1,34 @@
+# this file defines the list of APT dependencies for ROS packages
+#
+# ros_package_dependency:
+#   ubuntu: [apt dependencies]
+#
+
+# px4 is build using a custom script outside of the bloom pipeline
+px4:
+  ubuntu: [ros-noetic-px4]
+
+# non-ROS dependencies managed by MRS
+mrs-geographiclib-datasets:
+  ubuntu: [mrs-geographiclib-datasets]
+mrs-uav-shell-additions:
+  ubuntu: [mrs-uav-shell-additions]
+
+libcamera_ros:
+  ubuntu: [ros-noetic-libcamera-ros]
+
+# other dependencies
+python3-jinja2:
+  ubuntu: [python3-jinja2]
+python-is-python3:
+  ubuntu: [python-is-python3]
+tmuxinator:
+  ubuntu: [tmuxinator]
+moreutils:
+  ubuntu: [moreutils]
+libgbm-dev:
+  ubuntu: [libgbm-dev]
+aptitude:
+  ubuntu: [aptitude]
+gdb:
+  ubuntu: [gdb]

@@ -1,0 +1,39 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Date: Fri, 18 Oct 2024 14:36:55 +0000
+Label: stable
+Origin: ctu-mrs
+MD5Sum:
+ 2fa0a0783696bb77d65a11192bd4332a           247540 Packages
+ 902a0c47846ce1007fba7c579888e299            49728 Packages.gz
+ cb4f1a2058dfccfbf9fae1c396419fd3               68 Release
+SHA1:
+ 4fa4e2398d661e179a2db45c83699af65cb3a6ad           247540 Packages
+ 886ab06f7bf81cd8aac686eb16e285e746f9d86f            49728 Packages.gz
+ 13561d8ae4a3e6dfa21acda2f0db28bf19a95ca5               68 Release
+SHA256:
+ b9edd4d539482d80aa514d67d5c8f080f976bc7e35d24d9a0596fbd4fa35ff57           247540 Packages
+ acb5483dfb5a729b15f86730e2a0e442cbe73b433d67e9a1caace1f8974db5c9            49728 Packages.gz
+ 0e1f6a5f301e38fee11b1a1327d7f8e8d81095452090fc3dd63fff654ecc1fc6               68 Release
+SHA512:
+ 43042cbc666ae096f10431f38ad6df6b3360294d9004a228ad28c59d73f0a2b526c70b603c0cc7af66c47c72a9ae81c3dc44c122f3c15c623d67a22eeba557db           247540 Packages
+ acd3ab2f9c6811ca0613891f66d5976ec81b59e0f4f45ebd30e660c3b9bcd6276805c23305ba18d4cd476a6b09710fde69185e0dfc64cbe134d5a8547fd4d882            49728 Packages.gz
+ 44580033c54a6cf5baa9b5ac319554c52d5cf49e3c7bc650725ddf2cf746568148813789f6a22990c85625d7cff62a119ad02747c7e48fb8bba4e41323b7c1bd               68 Release
+-----BEGIN PGP SIGNATURE-----
+
+iQJLBAEBCgA1FiEEb03deYxGy/GR9vy/sp02ABwZjREFAmcScocXHHRvbWFzLmJh
+Y2FAZmVsLmN2dXQuY3oACgkQsp02ABwZjRHI6Q/8DCN+lppYXhA9+awIQ/VBA4wS
+NCdC8bXwI0HdPexiZsRuzaIT3L9dg0zU9483hpQzPMycEOLLk9bDUnS3cU/YZ1Uy
+WMzubhA62cWrvycRSBrHHjSPXgj1yXbg4jQez2wQD6adTxOX+Xo3wRsxq+ggzsu4
+uhTVRb4iMzgvL0udsIaOg7ar7ZCB/I3my3fFfmrTwmNncGa2D7Zx5gvXgnWvfWDg
+4Q6ld1T7bwI6X1xwetAr+DB/O07vcMbS3xYqshKTwY+MpzctHBUdzjxToRNmkc+k
+qxJqJLnNc50ItGwQ3WtWELhZWjsxEyiHHYiAs+VylJmXdltkdylbsdWhjPiiZV8v
+s2urWWhWQlQ8AwHLrVmbczg1m18IB2tM455rAnSi243M3qbmcm31xopSg0/na7As
+yGf6br0OkBhj2OAdRTXlljIeqMl7mBaTFUaC94Ny4laSSjhHmBoMaOPHK/LSg66S
+ZVg2ajg+Uzqk6x2L1CfNoBHknINExMRCM39Mdet1Rj6Y4GKLyrcGydJ34Zu9ZwYA
+3TvO3aXguW3vQd+B+lZQik2zHys9v7hoCZ38/TJMvECQHAhh9Zw3I+TEACLrciYS
+bIG1oMuHX38wR5V1oC9i66JRxhD5yIu+siiyCByribz/p7AoHaDZz22+Gqpoz45F
+mh2BiyrZA0YMtJUSgXg=
+=ImZu
+-----END PGP SIGNATURE-----
