@@ -17,6 +17,6 @@ sudo curl -s --compressed -o /etc/apt/preferences.d/ctu-mrs-stable-preferences "
 sudo curl -s --compressed -o /etc/ros/rosdep/sources.list.d/ctu-mrs-stable.list "https://ctu-mrs.github.io/ppa-stable/ctu-mrs-$ARCH.list"
 sudo apt-get -y update
 
-rosdep update
+rosdep update --include-eol-distros
 
 echo "$0: Finished adding MRS Stable PPA repository"

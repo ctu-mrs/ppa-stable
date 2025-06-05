@@ -20,6 +20,6 @@ sudo apt-get -y install python3-pip
 sudo pip3 install -U rosdep
 
 sudo rosdep init || echo "$0: rosdep already initialized"
-rosdep update
+rosdep update --include-eol-distros
 
 echo "$0: ROS PPA added"
