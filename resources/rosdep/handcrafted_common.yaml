@@ -14,6 +14,12 @@ mrs-geographiclib-datasets:
 mrs-uav-shell-additions:
   ubuntu: [mrs-uav-shell-additions]
 
+mrs_robot_diagnostics:
+  ubuntu: [ros-noetic-mrs-robot-diagnostics]
+
+mrs_errorgraph:
+  ubuntu: [ros-noetic-mrs-errorgraph]
+
 libcamera_ros:
   ubuntu: [ros-noetic-libcamera-ros]
 
