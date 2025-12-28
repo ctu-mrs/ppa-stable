@@ -1,0 +1,19 @@
+Date: Sun, 28 Dec 2025 00:56:05 +0000
+Label: stable
+Origin: ctu-mrs
+MD5Sum:
+ 706c7127178b729bc86a649f37fdfe07           258588 Packages
+ 9bfd018a7e1940dc6ce98147fcba7013            50654 Packages.gz
+ 078955ef2a5dbf3dc676014aaf47a56d               68 Release
+SHA1:
+ a4ba1832d79eecba2e40b154660f9ddbc3c743c6           258588 Packages
+ 956c6b3e11b3adedc64fd117b3893262b4727926            50654 Packages.gz
+ 5b78110de601208d8c7198b398e0e6abc41c011c               68 Release
+SHA256:
+ c69ac0a790c597b70bb32f7fe2d913d36efa15d0606fc4a1ea5cd3aac7cba025           258588 Packages
+ 1bc79ad32b077895a405c81613d6a22fd5a18465ba20d22657dceb744e19eba3            50654 Packages.gz
+ a4566c68f94f3bab8a66ba42ba9bd4ba98143ee49ca134f17aa1df2e6b19e3b3               68 Release
+SHA512:
+ b32e7078c4d71c64ab30972a7a34b3bf0cf072828977528f5d6be1d596205d672705e8d79fc72bcba91250a8bf3d75cb443edabb997dc36a03a17faeca82c77d           258588 Packages
+ bef62e0b729dfa96a3e1e8a09e0ae779f9366c7b2f13c5e1d827697520046370600c05b928982c6ffb95545e8a044f1223a37dd8c52ff0ee6f796fc5874c38c1            50654 Packages.gz
+ d258719e6d97921c21d5eff0f8164f6e16bd93fd416ad6f0e7479ac25bf64eaa20b4d8c9f451757560555ed3e772af11cf2205735c8ddcc0c6cfcfa6bed16019               68 Release

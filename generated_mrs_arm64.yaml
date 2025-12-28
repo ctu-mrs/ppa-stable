@@ -1,0 +1,213 @@
+mrs_msgs:
+    ubuntu: [ros-noetic-mrs-msgs]
+  
+mrs_modules_msgs:
+    ubuntu: [ros-noetic-mrs-modules-msgs]
+  
+mrs_uav_deployment:
+    ubuntu: [ros-noetic-mrs-uav-deployment]
+  
+mrs_lib:
+    ubuntu: [ros-noetic-mrs-lib]
+  
+mrs_gazebo_common_resources:
+    ubuntu: [ros-noetic-mrs-gazebo-common-resources]
+  
+mrs_sensor_info:
+    ubuntu: [ros-noetic-mrs-sensor-info]
+  
+mrs_multireconfigure:
+    ubuntu: [ros-noetic-mrs-multireconfigure]
+  
+mrs_tf_reconfigure:
+    ubuntu: [ros-noetic-mrs-tf-reconfigure]
+  
+mrs_throw_activation:
+    ubuntu: [ros-noetic-mrs-throw-activation]
+  
+mrs_euler_counter_example:
+    ubuntu: [ros-noetic-mrs-euler-counter-example]
+  
+mrs_tf_mirror:
+    ubuntu: [ros-noetic-mrs-tf-mirror]
+  
+mrs_camera_republisher:
+    ubuntu: [ros-noetic-mrs-camera-republisher]
+  
+mrs_circle_flier:
+    ubuntu: [ros-noetic-mrs-circle-flier]
+  
+mrs_tf_connector:
+    ubuntu: [ros-noetic-mrs-tf-connector]
+  
+mrs_tf_estimator:
+    ubuntu: [ros-noetic-mrs-tf-estimator]
+  
+mrs_utils:
+    ubuntu: [ros-noetic-mrs-utils]
+  
+aloam_slam:
+    ubuntu: [ros-noetic-aloam-slam]
+  
+mrs_vins_republisher:
+    ubuntu: [ros-noetic-mrs-vins-republisher]
+  
+mrs_vins_imu_filter:
+    ubuntu: [ros-noetic-mrs-vins-imu-filter]
+  
+mrs_serial:
+    ubuntu: [ros-noetic-mrs-serial]
+  
+mrs_bumper:
+    ubuntu: [ros-noetic-mrs-bumper]
+  
+liosam:
+    ubuntu: [ros-noetic-liosam]
+  
+mrs_uav_hw_api:
+    ubuntu: [ros-noetic-mrs-uav-hw-api]
+  
+mrs_uav_trajectory_loader:
+    ubuntu: [ros-noetic-mrs-uav-trajectory-loader]
+  
+mrs_icm_imu_driver:
+    ubuntu: [ros-noetic-mrs-icm-imu-driver]
+  
+mrs_octomap_tools:
+    ubuntu: [ros-noetic-mrs-octomap-tools]
+  
+mrs_uav_path_loader:
+    ubuntu: [ros-noetic-mrs-uav-path-loader]
+  
+uvdar_core:
+    ubuntu: [ros-noetic-uvdar-core]
+  
+mrs_landing_pad_estimation:
+    ubuntu: [ros-noetic-mrs-landing-pad-estimation]
+  
+mrs_precise_landing_gazebo:
+    ubuntu: [ros-noetic-mrs-precise-landing-gazebo]
+  
+mrs_precise_landing:
+    ubuntu: [ros-noetic-mrs-precise-landing]
+  
+mrs_uav_status:
+    ubuntu: [ros-noetic-mrs-uav-status]
+  
+mrs_subt_planning_lib:
+    ubuntu: [ros-noetic-mrs-subt-planning-lib]
+  
+mrs_uav_testing:
+    ubuntu: [ros-noetic-mrs-uav-testing]
+  
+mrs_rviz_plugins:
+    ubuntu: [ros-noetic-mrs-rviz-plugins]
+  
+mrs_pcl_tools:
+    ubuntu: [ros-noetic-mrs-pcl-tools]
+  
+mrs_multirotor_simulator:
+    ubuntu: [ros-noetic-mrs-multirotor-simulator]
+  
+mrs_uav_dji_tello_api:
+    ubuntu: [ros-noetic-mrs-uav-dji-tello-api]
+  
+mrs_uav_coppelia_api:
+    ubuntu: [ros-noetic-mrs-uav-coppelia-api]
+  
+mrs_uav_coppelia_simulation:
+    ubuntu: [ros-noetic-mrs-uav-coppelia-simulation]
+  
+mrs_uav_px4_api:
+    ubuntu: [ros-noetic-mrs-uav-px4-api]
+  
+mrs_robofly_example:
+    ubuntu: [ros-noetic-mrs-robofly-example]
+  
+mrs_robofly_core:
+    ubuntu: [ros-noetic-mrs-robofly-core]
+  
+mrs_octomap_server:
+    ubuntu: [ros-noetic-mrs-octomap-server]
+  
+mrs_octomap_planner:
+    ubuntu: [ros-noetic-mrs-octomap-planner]
+  
+mrs_uav_gazebo_testing:
+    ubuntu: [ros-noetic-mrs-uav-gazebo-testing]
+  
+mrs_uav_trajectory_generation:
+    ubuntu: [ros-noetic-mrs-uav-trajectory-generation]
+  
+mrs_uav_managers:
+    ubuntu: [ros-noetic-mrs-uav-managers]
+  
+mrs_uav_modules:
+    ubuntu: [ros-noetic-mrs-uav-modules]
+  
+mrs_uav_unreal_simulation:
+    ubuntu: [ros-noetic-mrs-uav-unreal-simulation]
+  
+mrs_octomap_mapping_planning:
+    ubuntu: [ros-noetic-mrs-octomap-mapping-planning]
+  
+mrs_uav_gazebo_simulation:
+    ubuntu: [ros-noetic-mrs-uav-gazebo-simulation]
+  
+mrs_uav_state_estimators:
+    ubuntu: [ros-noetic-mrs-uav-state-estimators]
+  
+mrs_uav_trackers:
+    ubuntu: [ros-noetic-mrs-uav-trackers]
+  
+mrs_uav_controllers:
+    ubuntu: [ros-noetic-mrs-uav-controllers]
+  
+mrs_uav_autostart:
+    ubuntu: [ros-noetic-mrs-uav-autostart]
+  
+mrs_open_vins_estimator_plugin:
+    ubuntu: [ros-noetic-mrs-open-vins-estimator-plugin]
+  
+mrs_aloam_estimator_plugin:
+    ubuntu: [ros-noetic-mrs-aloam-estimator-plugin]
+  
+mrs_vins_kickoff_estimator_plugin:
+    ubuntu: [ros-noetic-mrs-vins-kickoff-estimator-plugin]
+  
+mrs_hector_estimator_plugin:
+    ubuntu: [ros-noetic-mrs-hector-estimator-plugin]
+  
+mrs_liosam_estimator_plugin:
+    ubuntu: [ros-noetic-mrs-liosam-estimator-plugin]
+  
+mrs_mins_estimator_plugin:
+    ubuntu: [ros-noetic-mrs-mins-estimator-plugin]
+  
+mrs_uav_core:
+    ubuntu: [ros-noetic-mrs-uav-core]
+  
+mrs_aloam_core:
+    ubuntu: [ros-noetic-mrs-aloam-core]
+  
+mrs_open_vins_core:
+    ubuntu: [ros-noetic-mrs-open-vins-core]
+  
+mrs_hector_core:
+    ubuntu: [ros-noetic-mrs-hector-core]
+  
+mrs_liosam_core:
+    ubuntu: [ros-noetic-mrs-liosam-core]
+  
+mrs_mins_core:
+    ubuntu: [ros-noetic-mrs-mins-core]
+  
+mrs_uav_system_full:
+    ubuntu: [ros-noetic-mrs-uav-system-full]
+  
+mrs_uav_system:
+    ubuntu: [ros-noetic-mrs-uav-system]
+  
+uvdar_gazebo_plugin:
+    ubuntu: [ros-noetic-uvdar-gazebo-plugin]
+  
