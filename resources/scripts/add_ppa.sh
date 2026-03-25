@@ -7,7 +7,7 @@ trap 'echo "$0: \"${last_command}\" command failed with exit code $?"' ERR
 
 echo "$0: Adding MRS Stable PPA repository"
 
-sudo apt-get -y install curl gpg dpkg-dev
+sudo apt-get --no-install-recommends -y install curl gpg dpkg-dev
 
 ARCH=$(dpkg-architecture -qDEB_HOST_ARCH)
 
