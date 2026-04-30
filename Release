@@ -1,0 +1,19 @@
+Date: Thu, 30 Apr 2026 07:04:18 +0000
+Label: stable
+Origin: ctu-mrs
+MD5Sum:
+ 7ec8dc52e1f2876f54fc1e89f28ec3b7           258598 Packages
+ 955730bc6d91314887293fb00988a536            50609 Packages.gz
+ 23c6cb603d6d2892a0d735bc4c3058a2               68 Release
+SHA1:
+ a42e64aabf4eb2282a5612e375fb088e6e5745ce           258598 Packages
+ 8950927fd0a5bf1be06d3c99a4f84d1de81953d1            50609 Packages.gz
+ 1c0645159b1e0b7d111808c04e7f807c9a8e9e8c               68 Release
+SHA256:
+ 051e3e82812b21d1b1a0b40fdb5979e77dbb98b711721fdaa963cef4d03edb09           258598 Packages
+ 5f87ddfa513572a4f992dbaa7d28ba88cbe308a6c64b3ad306cd1f62e4e987e3            50609 Packages.gz
+ eff4293acebbef847b99a1c1a13d15945ea3fc9b8265fec29cba24e1af16ffd3               68 Release
+SHA512:
+ 3e6862fe297ca1d45f2da8c024a6c868677b67cd72b758d9322df0d6ccabacf0ed621e92dca15ba175ee82fb3e29fecd7ea9cb82763361fedfd381127f8c87d1           258598 Packages
+ cc966eb65d2d404891fc16816a27592aae03acf7d36d5a5e2e956ec2af3a7c740afd811e72ccaf9594f70e0e62df59d58355425db112fac963ca5ee800170bbd            50609 Packages.gz
+ c3c1b5e847f628a598360b9cbbde9494032523dfa26df42e3736695890939ab1d5268afc80cae40c18adc96ceec456f83c1a18f35211ada50d19eaf932e2b169               68 Release
