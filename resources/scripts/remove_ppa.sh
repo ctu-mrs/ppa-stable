@@ -6,7 +6,7 @@ sudo rm /etc/apt/sources.list.d/ctu-mrs-stable.list
 sudo rm /etc/apt/preferences.d/ctu-mrs-stable-preferences
 sudo rm /etc/ros/rosdep/sources.list.d/ctu-mrs-stable.list
 
-sudo apt-get -y update
+sudo apt-get update
 rosdep update --include-eol-distros
 
 echo "$0: Finished removing MRS Stable PPA repository"

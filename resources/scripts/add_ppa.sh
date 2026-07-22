@@ -15,7 +15,7 @@ curl -s --compressed "https://ctu-mrs.github.io/ppa-stable/ctu-mrs.gpg" | gpg --
 sudo curl -s --compressed -o /etc/apt/sources.list.d/ctu-mrs-stable.list "https://ctu-mrs.github.io/ppa-stable/ctu-mrs-apt.list"
 sudo curl -s --compressed -o /etc/apt/preferences.d/ctu-mrs-stable-preferences "https://ctu-mrs.github.io/ppa-stable/ctu-mrs-ppa-preferences.txt"
 sudo curl -s --compressed -o /etc/ros/rosdep/sources.list.d/ctu-mrs-stable.list "https://ctu-mrs.github.io/ppa-stable/ctu-mrs-$ARCH.list"
-sudo apt-get -y update
+sudo apt-get update
 
 rosdep update --include-eol-distros
 
