@@ -4,4 +4,4 @@ curl -s --compressed --retry 4 --retry-max-time 60 --retry-all-errors "https://c
 sudo curl -s --compressed --retry 4 --retry-max-time 60 --retry-all-errors -o /etc/apt/sources.list.d/ctu-mrs-stable.list "https://ctu-mrs.github.io/ppa-stable/ctu-mrs-apt.list"
 sudo curl -s --compressed --retry 4 --retry-max-time 60 --retry-all-errors -o /etc/apt/preferences.d/ctu-mrs-stable-preferences "https://ctu-mrs.github.io/ppa-stable/ctu-mrs-ppa-preferences.txt"
 
-sudo apt-get update -o Acquire::Retries="4"
+sudo apt-get -o Acquire::Retries="4" update
