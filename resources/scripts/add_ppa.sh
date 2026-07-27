@@ -17,6 +17,6 @@ sudo curl -s --compressed --retry 4 --retry-max-time 60 --retry-all-errors -o /e
 sudo curl -s --compressed --retry 4 --retry-max-time 60 --retry-all-errors -o /etc/ros/rosdep/sources.list.d/ctu-mrs-stable.list "https://ctu-mrs.github.io/ppa-stable/ctu-mrs-$ARCH.list"
 sudo apt-get update -o Acquire::Retries="4"
 
-rosdep update --include-eol-distros
+rosdep update --include-eol-distros --rosdistro=noetic
 
 echo "$0: Finished adding MRS Stable PPA repository"
