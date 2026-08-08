@@ -1,0 +1,18 @@
+mrs_dummy2_package:
+    ubuntu: [ros-noetic-mrs-dummy2-package]
+  
+mrs_dummy5_package:
+    ubuntu: [ros-noetic-mrs-dummy5-package]
+  
+mrs_dummy_metapackage:
+    ubuntu: [ros-noetic-mrs-dummy-metapackage]
+  
+mrs_dummy_package:
+    ubuntu: [ros-noetic-mrs-dummy-package]
+  
+mrs_dummy3_package:
+    ubuntu: [ros-noetic-mrs-dummy3-package]
+  
+mrs_dummy4_package:
+    ubuntu: [ros-noetic-mrs-dummy4-package]
+  
