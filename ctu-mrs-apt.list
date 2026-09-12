@@ -1,0 +1,1 @@
+deb [signed-by=/etc/apt/trusted.gpg.d/ctu-mrs.gpg] https://ctu-mrs.github.io/ppa-stable ./
