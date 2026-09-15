@@ -202,10 +202,10 @@ mrs_vins_republisher:
 uvdar_core:
   ubuntu:
   - ros-noetic-uvdar-core
-mrs_uav_system_full:
-  ubuntu: [ros-noetic-mrs-uav-system-full]
 mrs_uav_system:
   ubuntu: [ros-noetic-mrs-uav-system]
+mrs_uav_system_full:
+  ubuntu: [ros-noetic-mrs-uav-system-full]
 
 uvdar_gazebo_plugin:
   ubuntu: [ros-noetic-uvdar-gazebo-plugin]
