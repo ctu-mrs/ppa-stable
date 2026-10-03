@@ -1,4 +1,4 @@
-# PPA stable
+# PPA stable · [Index](https://ctu-mrs.github.io/ppa-stable/)
 
 Personal Package Archive (PPA) for stable MRS deb packages.
 
