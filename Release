@@ -1,0 +1,19 @@
+Date: Sat, 10 Oct 2026 17:14:40 +0000
+Label: stable
+Origin: ctu-mrs
+MD5Sum:
+ f82da536e407c1bffea685acc4fd8233           271008 Packages
+ ee07a19f10139c25635c6913865f0f27            51341 Packages.gz
+ 74f50b998c8ff673902ca352bd769d83               68 Release
+SHA1:
+ 02e6bcaab292fa8dc77f49c9ac8dac05f17a9490           271008 Packages
+ 1e137beff8a4d050ce2e52b1590bace58e0ebd2e            51341 Packages.gz
+ 5b038db47ba388cdfb326651ce747952d10fd91a               68 Release
+SHA256:
+ fceddba9c73d7d07b55085a9dbade44d1c5d51faed8fc2f24da1f4b5ef76c830           271008 Packages
+ fd1e3f6cf79ccf9c65990fc02ff2b2d1907037b806be7402ee2afd9d2ff501a9            51341 Packages.gz
+ 9fb7f34bfe58ce8e96698c12620e805e92476320695e0f66accffec5551ac130               68 Release
+SHA512:
+ 875d1e4b976510d326aa6cd053ab46a4962eccdbe9b818c335e423d99547e99bbbb37d573316399bc735adc01f7bf161b21dc37067ddf8fcc80e050505aa050d           271008 Packages
+ cdf7478fe3aebbfb53aeea3cc03fa2c0a3948687e32591bffdeb5d7d0f953eb121a369498f235d6d69e77152e2361b75ffea6efe7f1f0c0c30df48c59dcb5895            51341 Packages.gz
+ 4a5150f914d47fc96227e5b39e568970e8ff6d5d86c4c920596bc69d32e133e0053cf62420152991ca7531a5cf46c37ff95d2aa03ccb95d1f251db86cf63da02               68 Release
