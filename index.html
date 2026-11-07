@@ -1,0 +1,2789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>PPA Repository</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--bg: #f1efe7;
+			--panel: rgba(255, 255, 253, 0.88);
+			--panel-strong: #fffdf8;
+			--panel-soft: rgba(246, 242, 232, 0.72);
+			--ink: #161412;
+			--muted: #5f5649;
+			--accent: #0e7490;
+			--accent-strong: #0f5f75;
+			--accent-soft: rgba(14, 116, 144, 0.1);
+			--line: rgba(22, 20, 18, 0.12);
+			--line-strong: rgba(22, 20, 18, 0.2);
+			--warn: #92400e;
+			--shadow: 0 18px 44px rgba(42, 35, 25, 0.12);
+			--radius-xl: 28px;
+			--radius-lg: 22px;
+			--radius-md: 16px;
+			--radius-sm: 12px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			font-family: "Segoe UI", "Aptos", "Helvetica Neue", Arial, sans-serif;
+			color: var(--ink);
+			background:
+				radial-gradient(circle at top left, rgba(14, 116, 144, 0.16), transparent 28%),
+				radial-gradient(circle at top right, rgba(217, 119, 6, 0.12), transparent 22%),
+				linear-gradient(180deg, #f8f5ec 0%, var(--bg) 100%);
+		}
+
+		a {
+			color: inherit;
+		}
+
+		button,
+		button *,
+		a,
+		[role="button"],
+		[data-dependency-link],
+		[data-version-link] {
+			cursor: pointer;
+		}
+
+		button,
+		input,
+		select {
+			font: inherit;
+			touch-action: manipulation;
+		}
+
+		code {
+			padding: 0.14rem 0.38rem;
+			border-radius: 999px;
+			background: rgba(15, 118, 110, 0.08);
+			font-family: Consolas, "SFMono-Regular", monospace;
+			font-size: 0.92em;
+		}
+
+		.shell {
+			width: 100%;
+			padding: 16px 0 24px;
+		}
+
+		.hero-shell {
+			width: min(100vw - 18px, 1500px);
+			margin: 0 auto;
+		}
+
+		.workspace-shell {
+			width: min(calc(100vw - 12px), 1800px);
+			margin: 16px auto 0;
+		}
+
+		.hero {
+			display: grid;
+			gap: 14px;
+			padding: 20px 22px;
+			border: 1px solid var(--line);
+			border-radius: var(--radius-xl);
+			background: linear-gradient(135deg, rgba(255, 253, 250, 0.95), rgba(244, 239, 230, 0.86));
+			box-shadow: var(--shadow);
+			backdrop-filter: blur(10px);
+		}
+
+		.hero-top {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 18px;
+			flex-wrap: wrap;
+		}
+
+		.hero-intro {
+			flex: 1 1 560px;
+			min-width: 280px;
+		}
+
+		.hero-corner {
+			flex: 0 1 440px;
+			width: min(440px, 100%);
+			display: grid;
+			gap: 10px;
+			align-content: start;
+		}
+
+		.eyebrow,
+		.tag,
+		.state-pill,
+		.dep-pill,
+		.history-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 7px 11px;
+			border-radius: 999px;
+			border: 1px solid transparent;
+			font-size: 0.82rem;
+			line-height: 1.1;
+		}
+
+		.eyebrow {
+			background: rgba(15, 118, 110, 0.09);
+			color: var(--accent-strong);
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.eyebrow-link {
+			text-decoration: none;
+			border: 1px solid rgba(15, 118, 110, 0.16);
+		}
+
+		.eyebrow-link:hover,
+		.eyebrow-link:focus-visible {
+			border-color: rgba(15, 118, 110, 0.38);
+			outline: none;
+		}
+
+		.eyebrow-github {
+			background: rgba(217, 119, 6, 0.14);
+			border-color: rgba(180, 83, 9, 0.22);
+			color: #9a3412;
+		}
+
+		.tag,
+		.state-pill,
+		.dep-pill,
+		.history-pill {
+			background: var(--accent-soft);
+			border-color: rgba(15, 118, 110, 0.12);
+			color: var(--accent-strong);
+		}
+
+		h1 {
+			margin: 10px 0 8px;
+			font-size: clamp(2rem, 4.2vw, 4rem);
+			line-height: 0.96;
+			letter-spacing: -0.05em;
+		}
+		.hero p {
+			margin: 0;
+			max-width: 900px;
+			color: var(--muted);
+			font-size: 1rem;
+			line-height: 1.7;
+		}
+
+		.repo-links,
+		.meta-row,
+		.inline-list,
+		.detail-actions,
+		.state-summary,
+		.dep-list,
+		.view-tabs,
+		.table-tools {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+
+		.chip-link,
+		.dep-link,
+		.action-link,
+		.row-link,
+		.pill-button,
+		.tab-button {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 10px 14px;
+			border-radius: 999px;
+			border: 1px solid var(--line);
+			background: rgba(255, 255, 255, 0.75);
+			color: var(--ink);
+			text-decoration: none;
+			transition: border-color 120ms ease, transform 120ms ease, background 120ms ease;
+		}
+
+		.chip-link:hover,
+		.dep-link:hover,
+		.action-link:hover,
+		.row-link:hover,
+		.pill-button:hover,
+		.tab-button:hover,
+		.chip-link:focus-visible,
+		.dep-link:focus-visible,
+		.action-link:focus-visible,
+		.row-link:focus-visible,
+		.pill-button:focus-visible,
+		.tab-button:focus-visible {
+			border-color: rgba(15, 118, 110, 0.34);
+			background: rgba(236, 253, 245, 0.82);
+			transform: translateY(-1px);
+			outline: none;
+		}
+
+		.tab-button.is-active {
+			background: rgba(15, 118, 110, 0.12);
+			border-color: rgba(15, 118, 110, 0.28);
+			color: var(--accent-strong);
+			font-weight: 700;
+		}
+
+		.hero-metrics {
+			display: grid;
+			grid-template-columns: minmax(130px, 0.85fr) minmax(260px, 1.15fr);
+			gap: 10px;
+		}
+
+		.metric-card {
+			padding: 12px 14px;
+			border-radius: var(--radius-lg);
+			background: var(--panel);
+			border: 1px solid var(--line);
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 6px;
+			align-items: center;
+			box-shadow: 0 6px 16px rgba(42, 35, 25, 0.08);
+		}
+
+		.metric-card.metric-count {
+			background: linear-gradient(140deg, rgba(236, 253, 245, 0.8), rgba(255, 255, 255, 0.92));
+		}
+
+		.metric-card.metric-time {
+			background: linear-gradient(140deg, rgba(255, 250, 245, 0.85), rgba(255, 255, 255, 0.92));
+		}
+		.metric-card.metric-time .metric-label {
+			white-space: nowrap;
+		}
+
+		.metric-label {
+			color: var(--muted);
+			font-size: 0.8rem;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			margin: 0;
+		}
+
+		.metric-value {
+			margin-top: 0;
+			font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+			font-weight: 800;
+			letter-spacing: -0.03em;
+			text-align: left;
+		}
+
+		.controls {
+			display: grid;
+			gap: 10px;
+			padding: 12px;
+			border: 1px solid var(--line);
+			border-radius: var(--radius-lg);
+			background: rgba(255, 255, 255, 0.64);
+			align-items: start;
+		}
+
+		.toolbar-fields {
+			display: grid;
+			grid-template-columns: minmax(220px, 2fr) repeat(2, minmax(160px, 1fr)) auto;
+			gap: 12px;
+			align-items: center;
+		}
+
+		.toolbar-actions {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			align-items: center;
+			gap: 12px;
+		}
+
+		.field,
+		.select,
+		.button,
+		.table-sort {
+			width: 100%;
+			padding: 13px 14px;
+			border-radius: var(--radius-md);
+			border: 1px solid var(--line);
+			background: var(--panel-strong);
+			color: var(--ink);
+			min-height: 48px;
+		}
+
+		.button,
+		.table-sort,
+		.pill-button,
+		.tab-button {
+			cursor: pointer;
+		}
+
+		.button,
+		.pill-button {
+			font-weight: 700;
+			background: linear-gradient(135deg, rgba(15, 118, 110, 0.12), rgba(255, 255, 255, 0.92));
+			white-space: nowrap;
+		}
+
+		.toolbar-actions .button {
+			width: auto;
+			min-width: 0;
+			padding: 11px 14px;
+			min-height: 42px;
+			flex: 0 0 auto;
+		}
+
+		.view-tabs {
+			justify-content: flex-start;
+			align-items: center;
+		}
+
+		.detail-build-pickers {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 10px;
+			grid-column: 1 / -1;
+		}
+
+		.detail-build-picker {
+			display: grid;
+			gap: 6px;
+			min-width: 0;
+		}
+
+		.detail-build-picker label {
+			font-size: 0.74rem;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			color: var(--muted);
+		}
+
+		.detail-arch-filter {
+			min-height: 40px;
+			padding: 8px 10px;
+			border-radius: 12px;
+		}
+
+		.button.button-secondary {
+			background: rgba(255, 255, 255, 0.85);
+			font-weight: 600;
+		}
+
+		.table-tools {
+			justify-content: flex-start;
+			align-items: center;
+		}
+
+		.table-tools .pill-button,
+		.view-tabs .tab-button,
+		.detail-actions .action-link,
+		.dep-list .dep-link,
+		.row-link {
+			padding: 9px 12px;
+			min-height: 40px;
+		}
+
+		.row-link,
+		.action-link,
+		.dep-link,
+		.pill-button,
+		.tab-button {
+			width: auto;
+			max-width: 100%;
+		}
+
+		.status-bar {
+			display: flex;
+			justify-content: space-between;
+			gap: 12px;
+			flex-wrap: wrap;
+			color: var(--muted);
+			font-size: 0.92rem;
+			padding: 8px 12px;
+			border-radius: var(--radius-md);
+			background: rgba(255, 255, 255, 0.58);
+			border: 1px solid var(--line);
+		}
+
+		.update-controls {
+			display: inline-flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+
+		.checkbox-inline {
+			display: inline-flex;
+			align-items: center;
+			color: var(--muted);
+		}
+
+		.checkbox-inline input {
+			margin: 0;
+		}
+
+		.list-head-actions {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 10px;
+			flex-wrap: wrap;
+		}
+
+		.layout {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(0, 0fr);
+			gap: 0;
+			align-items: start;
+			transition: grid-template-columns 300ms cubic-bezier(0.22, 1, 0.36, 1), gap 300ms cubic-bezier(0.22, 1, 0.36, 1);
+		}
+
+		.layout.has-selection {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 0.447fr);
+			gap: 14px;
+		}
+
+		.list-panel,
+		.detail-panel {
+			min-width: 0;
+		}
+
+		.list-panel {
+			width: 100%;
+		}
+
+		.list-panel {
+			display: grid;
+			grid-template-rows: auto auto;
+		}
+
+		.list-panel .panel-body {
+			display: grid;
+			grid-template-rows: auto auto;
+			gap: 12px;
+		}
+
+		.detail-panel {
+			position: sticky;
+			top: 12px;
+			max-height: calc(100vh - 24px);
+			display: grid;
+			grid-template-rows: auto minmax(0, 1fr);
+			align-self: start;
+			opacity: 1;
+			transform: translateX(0);
+			visibility: visible;
+			transition: opacity 180ms ease 70ms, transform 300ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+		}
+
+		.detail-panel.is-hidden {
+			opacity: 0;
+			transform: translateX(18px);
+			visibility: hidden;
+			pointer-events: none;
+			transition: opacity 140ms ease, transform 300ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 300ms;
+		}
+
+		.detail-panel .panel-body {
+			overflow: auto;
+			min-height: 0;
+		}
+
+		.detail-panel .panel-head {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+		}
+
+		.detail-panel .view-tabs {
+			max-width: 130px;
+		}
+
+		.detail-panel.panel,
+		.detail-panel .panel-head {
+			backdrop-filter: none;
+		}
+
+		.panel {
+			border: 1px solid var(--line);
+			border-radius: var(--radius-xl);
+			background: var(--panel);
+			box-shadow: var(--shadow);
+			overflow: hidden;
+			backdrop-filter: blur(12px);
+		}
+
+		.panel-head {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 12px;
+			padding: 18px 20px;
+			border-bottom: 1px solid var(--line);
+			background: rgba(255, 255, 255, 0.58);
+			position: sticky;
+			top: 0;
+			z-index: 5;
+			backdrop-filter: blur(8px);
+		}
+
+		.panel-head h2,
+		.panel-head h3 {
+			margin: 0;
+			font-size: 1rem;
+			letter-spacing: -0.02em;
+		}
+
+		.mobile-back {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 8px 12px;
+			min-height: 38px;
+			border-radius: 10px;
+			border: 1px solid var(--line);
+			background: rgba(255, 255, 255, 0.86);
+			font-weight: 700;
+			margin-bottom: 8px;
+		}
+
+		.panel-body {
+			padding: 16px;
+		}
+
+		.table-wrap {
+			overflow-x: auto;
+			overflow-y: visible;
+			border: 1px solid var(--line);
+			border-radius: var(--radius-lg);
+			background: rgba(255, 255, 255, 0.68);
+			-webkit-overflow-scrolling: touch;
+			overflow-anchor: none;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			table-layout: fixed;
+			min-width: 900px;
+		}
+
+		.col-package { width: 27%; }
+		.col-version { width: 34%; }
+		.col-maintainer { width: 15%; }
+		.col-build { width: 13%; }
+		.col-artifact { width: 11%; }
+
+		.version-summary {
+			display: grid;
+			gap: 2px;
+			min-width: 0;
+			width: 100%;
+		}
+
+		.version-summary-line {
+			display: flex;
+			gap: 5px;
+			min-width: 0;
+			line-height: 1.35;
+		}
+
+		.version-summary-line strong {
+			font-weight: 700;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.version-summary-arch {
+			color: var(--muted);
+			font-size: 0.84rem;
+			flex: 0 0 auto;
+		}
+
+		.maintainer-text,
+		.artifact-text {
+			display: block;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		thead th {
+			position: sticky;
+			top: 0;
+			z-index: 1;
+			padding: 12px 14px;
+			border-bottom: 1px solid var(--line-strong);
+			background: rgba(255, 253, 248, 0.95);
+			text-align: left;
+			font-size: 0.82rem;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			color: var(--muted);
+		}
+
+		tbody td {
+			padding: 14px;
+			border-bottom: 1px solid rgba(25, 23, 20, 0.08);
+			vertical-align: top;
+		}
+
+		tbody tr {
+			transition: background 120ms ease;
+			cursor: pointer;
+		}
+
+		tbody tr:hover,
+		tbody tr.is-active {
+			background: rgba(236, 253, 245, 0.62);
+		}
+
+		.table-sort {
+			padding: 0;
+			border: 0;
+			background: transparent;
+			text-align: inherit;
+			color: inherit;
+			font-size: inherit;
+			text-transform: inherit;
+			letter-spacing: inherit;
+		}
+
+		.table-sort.is-active {
+			color: var(--accent-strong);
+		}
+
+		.table-name {
+			font-weight: 800;
+			letter-spacing: -0.02em;
+			margin-bottom: 4px;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.table-name-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 8px;
+		}
+
+		.icon-link {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 32px;
+			height: 32px;
+			border-radius: 999px;
+			border: 1px solid var(--line);
+			background: rgba(255, 255, 255, 0.82);
+			color: var(--accent-strong);
+			text-decoration: none;
+			flex: 0 0 auto;
+			transition: background 120ms ease, border-color 120ms ease, transform 120ms ease;
+		}
+
+		.icon-link svg {
+			width: 16px;
+			height: 16px;
+			stroke: currentColor;
+			fill: none;
+			stroke-width: 1.9;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+
+		.icon-link:hover,
+		.icon-link:focus-visible {
+			background: rgba(236, 253, 245, 0.86);
+			border-color: rgba(15, 118, 110, 0.3);
+			transform: translateY(-1px);
+			outline: none;
+		}
+
+		.muted,
+		.hint,
+		.table-description,
+		.control-value,
+		.detail-intro {
+			color: var(--muted);
+			font-size: 0.92rem;
+			line-height: 1.55;
+		}
+
+		.table-description {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.detail-hero {
+			display: grid;
+			gap: 14px;
+			padding: 18px;
+			border-radius: var(--radius-lg);
+			border: 1px solid var(--line);
+			background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(241, 252, 250, 0.68));
+		}
+
+		.detail-title-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+
+		.detail-title {
+			margin: 0;
+			font-size: clamp(1.6rem, 2vw, 2.3rem);
+			line-height: 1;
+			letter-spacing: -0.04em;
+		}
+
+		.detail-grid,
+		.dependency-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 12px;
+		}
+
+		.detail-card,
+		.dependency-block,
+		.control-block {
+			padding: 15px;
+			border-radius: var(--radius-md);
+			background: rgba(255, 255, 255, 0.8);
+			border: 1px solid var(--line);
+		}
+
+		.detail-card strong,
+		.dependency-block strong,
+		.control-block strong {
+			display: block;
+			margin-bottom: 6px;
+			font-size: 0.8rem;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			color: var(--muted);
+		}
+
+		.detail-hero .tag {
+			max-width: 100%;
+			overflow-wrap: anywhere;
+		}
+
+		.detail-card div,
+		.control-value {
+			overflow-wrap: anywhere;
+		}
+
+		.description,
+		.control-table-wrap,
+		.dependency-grid {
+			margin-top: 16px;
+		}
+
+		.relation-lines {
+			display: grid;
+			gap: 6px;
+		}
+
+		.relation-line {
+			padding: 6px 8px;
+			border-radius: 10px;
+			background: rgba(255, 255, 255, 0.72);
+			border: 1px solid var(--line);
+			font-size: 0.88rem;
+			line-height: 1.45;
+		}
+
+		.description {
+			padding: 18px;
+			border-radius: var(--radius-lg);
+			border: 1px solid var(--line);
+			background: rgba(255, 255, 255, 0.82);
+			line-height: 1.7;
+		}
+
+		.control-table-wrap {
+			overflow: auto;
+			border: 1px solid var(--line);
+			border-radius: var(--radius-lg);
+			background: rgba(255, 255, 255, 0.76);
+		}
+
+		.control-table td,
+		.control-table th {
+			padding: 12px 14px;
+			border-bottom: 1px solid rgba(25, 23, 20, 0.08);
+			vertical-align: top;
+		}
+
+		.control-table th {
+			width: 210px;
+			text-align: left;
+			font-size: 0.82rem;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+			color: var(--muted);
+			background: rgba(255, 253, 248, 0.92);
+		}
+
+		.empty,
+		.status,
+		.warning {
+			padding: 20px;
+			border-radius: var(--radius-lg);
+			border: 1px dashed var(--line);
+			background: rgba(255, 255, 255, 0.66);
+			color: var(--muted);
+			line-height: 1.7;
+		}
+
+		.warning {
+			border-style: solid;
+			color: var(--warn);
+			background: rgba(255, 247, 237, 0.9);
+		}
+
+		@media (max-width: 1360px) {
+			.toolbar-fields {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+		}
+
+		@media (max-width: 900px) {
+			.hero-corner {
+				width: 100%;
+				flex-basis: 100%;
+			}
+
+			.hero-metrics {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.layout,
+			.layout.has-selection {
+				grid-template-columns: 1fr;
+				gap: 0;
+			}
+
+			.list-panel {
+				width: 100%;
+			}
+
+			.detail-panel.is-hidden {
+				display: none;
+			}
+
+			.detail-panel .panel-head {
+				grid-template-columns: 1fr;
+			}
+
+			.detail-panel .view-tabs {
+				max-width: none;
+			}
+
+			.list-panel,
+			.detail-panel {
+				height: auto;
+				max-height: none;
+				position: static;
+			}
+
+			.detail-grid,
+			.dependency-grid {
+				grid-template-columns: 1fr;
+			}
+
+			body.mobile-detail-open {
+				overflow: hidden;
+			}
+
+			body.mobile-detail-open .detail-panel {
+				position: fixed;
+				inset: 0;
+				z-index: 60;
+				max-height: none;
+				width: 100vw;
+				height: 100vh;
+				border-radius: 0;
+				background: var(--panel-strong);
+			}
+
+			body.mobile-detail-open .detail-panel .panel-head {
+				position: sticky;
+				top: 0;
+				z-index: 61;
+			}
+
+			body.mobile-detail-open .detail-panel .panel-body {
+				overflow: auto;
+				max-height: calc(100vh - 88px);
+			}
+
+			body.mobile-detail-open .list-panel {
+				visibility: hidden;
+			}
+
+			.hero-metrics {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+		}
+
+		@media (max-width: 760px) {
+			.shell {
+				padding-top: 12px;
+				padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+			}
+
+			.hero-shell,
+			.workspace-shell {
+				width: calc(100vw - 12px);
+			}
+
+			.hero,
+			.panel-head,
+			.panel-body {
+				padding-left: 14px;
+				padding-right: 14px;
+			}
+
+			.hero {
+				gap: 12px;
+			}
+
+			.controls {
+				position: sticky;
+				top: 8px;
+				z-index: 16;
+				background: rgba(255, 255, 255, 0.9);
+				backdrop-filter: blur(10px);
+				box-shadow: 0 8px 24px rgba(22, 20, 18, 0.14);
+			}
+
+			.toolbar-fields,
+			.toolbar-actions {
+				grid-template-columns: 1fr;
+			}
+
+			.hero-metrics {
+				grid-template-columns: 1fr;
+			}
+
+			.detail-build-pickers {
+				grid-template-columns: 1fr;
+			}
+
+			.view-tabs {
+				width: 100%;
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 8px;
+			}
+
+			.panel-head {
+				flex-direction: column;
+				align-items: stretch;
+			}
+
+			.tab-button {
+				justify-content: center;
+				padding: 12px 10px;
+				min-height: 46px;
+				border-radius: 12px;
+			}
+
+			.toolbar-actions .button,
+			.toolbar-actions .button.button-secondary,
+			.pill-button,
+			.row-link,
+			.action-link,
+			.dep-link {
+				min-height: 50px;
+				justify-content: center;
+			}
+
+			.table-tools {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 10px;
+			}
+
+			.status-bar {
+				font-size: 0.86rem;
+				padding: 8px 10px;
+			}
+
+			.metric-card {
+				padding: 12px;
+			}
+
+			.metric-value {
+				font-size: clamp(1.2rem, 7vw, 1.7rem);
+			}
+
+			table {
+				min-width: 720px;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.layout,
+			.detail-panel,
+			.detail-panel.is-hidden {
+				transition: none;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="shell">
+		<div class="hero-shell">
+			<section class="hero">
+				<div class="hero-top">
+					<div class="hero-intro">
+						<div class="inline-list">
+							<a id="apt-repo-link" class="eyebrow eyebrow-link" href="#">APT Repository</a>
+							<a id="github-repo-link" class="eyebrow eyebrow-link eyebrow-github" href="#" target="_blank" rel="noreferrer">GitHub Repository</a>
+						</div>
+						<h1 id="hero-title">owner/repo</h1>
+					</div>
+					<div class="hero-corner">
+						<div class="hero-metrics">
+							<div class="metric-card metric-count">
+								<div class="metric-label">Packages</div>
+								<div class="metric-value" id="stat-packages">-</div>
+							</div>
+							<div class="metric-card metric-time">
+								<div class="metric-label">Last Deployment</div>
+								<div class="metric-value" id="stat-latest">-</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="controls">
+					<div class="toolbar-fields">
+						<input id="search" class="field" type="search" placeholder="Search package, description, maintainer, dependency or metadata">
+						<select id="arch-filter" class="select">
+							<option value="all">All architectures</option>
+						</select>
+						<select id="sort-filter" class="select">
+							<option value="latest">Sort by latest deploy</option>
+							<option value="name">Sort by package name</option>
+							<option value="versions">Sort by version count</option>
+							<option value="history">Sort by deployment count</option>
+						</select>
+						<button id="refresh" class="button" type="button">Refresh</button>
+					</div>
+				</div>
+
+				<div class="status-bar">
+					<span id="status-line">Loading repository metadata…</span>
+					<span class="update-controls">
+						<span id="update-countdown">Next refresh in --s</span>
+						<label class="checkbox-inline" for="auto-refresh-toggle">
+							<input id="auto-refresh-toggle" type="checkbox" checked aria-label="Toggle auto refresh">
+						</label>
+					</span>
+				</div>
+			</section>
+		</div>
+
+		<div class="workspace-shell">
+			<div class="layout" id="workspace-layout">
+			<section class="panel list-panel">
+				<div class="panel-head">
+					<div>
+						<h2>Packages</h2>
+						<div class="hint" id="package-count">0 shown</div>
+					</div>
+					<div class="list-head-actions">
+						<div class="state-summary" id="state-summary"></div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="table-wrap" id="list-root"></div>
+				</div>
+			</section>
+
+			<section class="panel detail-panel" id="detail-panel">
+				<div class="panel-head">
+					<div>
+						<button type="button" class="mobile-back" id="detail-back">Close</button>
+						<h3>Package Detail</h3>
+						<div class="hint" id="detail-caption">Select a package or open ?pkg=name to see newest details</div>
+					</div>
+					<div class="view-tabs">
+						<button type="button" class="tab-button is-active" data-tab="overview">Overview</button>
+						<button type="button" class="tab-button" data-tab="control">Control</button>
+					</div>
+					<div class="detail-build-pickers">
+						<div class="detail-build-picker">
+							<label for="detail-arch-filter">Build architecture</label>
+							<select id="detail-arch-filter" class="select detail-arch-filter">
+								<option value="" disabled>No architecture available</option>
+							</select>
+						</div>
+						<div class="detail-build-picker">
+							<label for="version-filter">Version</label>
+							<select id="version-filter" class="select detail-arch-filter">
+								<option value="latest">Newest</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body" id="detail-root">
+					<div class="empty">Package details will appear here after the first snapshot is loaded.</div>
+				</div>
+			</section>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const state = {
+			repo: null,
+			release: null,
+			inRelease: null,
+			releaseIndexes: [],
+			releaseRawText: "",
+			sourcesRawText: "",
+			packagesRawText: "",
+			lastSnapshotFingerprint: "",
+			sources: [],
+			sourceByBinary: new Map(),
+			currentPackages: [],
+			packages: [],
+			selectedName: "",
+			selectedVersion: "latest",
+			selectedBuildArchitecture: "",
+			activeTab: "overview",
+			filters: {
+				query: "",
+				architecture: "all",
+				sort: "latest"
+			},
+			urlSyncSuspended: false,
+			backgroundUpdateTimerId: null,
+			backgroundUpdateInFlight: false,
+			backgroundCountdownTimerId: null,
+			nextBackgroundUpdateAt: 0,
+			autoRefreshEnabled: true
+		};
+
+		const elements = {
+			layout: document.getElementById("workspace-layout"),
+			heroTitle: document.getElementById("hero-title"),
+			aptRepoLink: document.getElementById("apt-repo-link"),
+			githubRepoLink: document.getElementById("github-repo-link"),
+			search: document.getElementById("search"),
+			archFilter: document.getElementById("arch-filter"),
+			sortFilter: document.getElementById("sort-filter"),
+			versionFilter: document.getElementById("version-filter"),
+			refresh: document.getElementById("refresh"),
+			listRoot: document.getElementById("list-root"),
+			detailPanel: document.getElementById("detail-panel"),
+			detailRoot: document.getElementById("detail-root"),
+			detailCaption: document.getElementById("detail-caption"),
+			detailArchFilter: document.getElementById("detail-arch-filter"),
+			detailBack: document.getElementById("detail-back"),
+			statusLine: document.getElementById("status-line"),
+			updateCountdown: document.getElementById("update-countdown"),
+			autoRefreshToggle: document.getElementById("auto-refresh-toggle"),
+			packageCount: document.getElementById("package-count"),
+			stateSummary: document.getElementById("state-summary"),
+			statPackages: document.getElementById("stat-packages"),
+			statLatest: document.getElementById("stat-latest"),
+			tabButtons: Array.from(document.querySelectorAll(".tab-button"))
+		};
+
+		function escapeHtml(value) {
+			return String(value ?? "")
+				.replace(/&/g, "&amp;")
+				.replace(/</g, "&lt;")
+				.replace(/>/g, "&gt;")
+				.replace(/\"/g, "&quot;")
+				.replace(/'/g, "&#39;");
+		}
+
+		function slugifyPackageName(name) {
+			return String(name || "").trim().toLowerCase();
+		}
+
+		function setStatus(message) {
+			elements.statusLine.textContent = message;
+		}
+
+		function updateBackgroundCountdownLine() {
+			if (!elements.updateCountdown) {
+				return;
+			}
+			if (!state.autoRefreshEnabled) {
+				elements.updateCountdown.textContent = "Auto refresh disabled";
+				return;
+			}
+			if (!state.nextBackgroundUpdateAt) {
+				elements.updateCountdown.textContent = "Next refresh in --s";
+				return;
+			}
+			const seconds = Math.max(0, Math.ceil((state.nextBackgroundUpdateAt - Date.now()) / 1000));
+			elements.updateCountdown.textContent = `Next refresh in ${seconds}s`;
+		}
+
+		function restartBackgroundCountdown() {
+			if (!state.autoRefreshEnabled) {
+				state.nextBackgroundUpdateAt = 0;
+				updateBackgroundCountdownLine();
+				return;
+			}
+			state.nextBackgroundUpdateAt = Date.now() + 60000;
+			updateBackgroundCountdownLine();
+		}
+
+		function getQueryOverrides() {
+			const params = new URLSearchParams(location.search);
+			return {
+				owner: params.get("owner")?.trim() || "",
+				repo: params.get("repo")?.trim() || "",
+				branch: params.get("branch")?.trim() || ""
+			};
+		}
+
+		function inferRepoFromLocation() {
+			const overrides = getQueryOverrides();
+			if (overrides.owner && overrides.repo) {
+				return {
+					owner: overrides.owner,
+					repo: overrides.repo,
+					branchOverride: overrides.branch
+				};
+			}
+
+			const hostname = location.hostname.toLowerCase();
+			const pathSegments = location.pathname.split("/").filter(Boolean);
+
+			if (hostname.endsWith(".github.io")) {
+				const owner = hostname.replace(/\.github\.io$/, "");
+				const repo = pathSegments[0] || `${owner}.github.io`;
+				return {
+					owner,
+					repo,
+					branchOverride: overrides.branch
+				};
+			}
+
+			throw new Error(
+				"Repository detection failed. On non-GitHub Pages hosts, provide ?owner=<org>&repo=<name>[&branch=<pages-branch>] in the URL."
+			);
+		}
+
+		function hostnameToPagesUrl(owner, repo) {
+			return `https://${owner}.github.io/${repo}/`;
+		}
+
+		async function fetchText(url) {
+			const response = await fetch(url, {
+				cache: "no-store",
+				headers: {
+					"Cache-Control": "no-cache"
+				}
+			});
+			if (!response.ok) {
+				throw new Error(`Request failed (${response.status}) for ${url}`);
+			}
+			return response.text();
+		}
+
+		async function fetchOptionalText(url) {
+			try {
+				return await fetchText(url);
+			} catch (error) {
+				return "";
+			}
+		}
+
+		async function resolveRepoContext() {
+			const inferred = inferRepoFromLocation();
+			const webBase = `https://github.com/${inferred.owner}/${inferred.repo}`;
+			const pagesBranch = inferred.branchOverride || "gh-pages";
+			const pagesUrl = hostnameToPagesUrl(inferred.owner, inferred.repo);
+
+			state.repo = {
+				owner: inferred.owner,
+				repo: inferred.repo,
+				webBase,
+				rawBase: `https://raw.githubusercontent.com/${inferred.owner}/${inferred.repo}`,
+				pagesBranch,
+				pagesUrl,
+				branchWeb: `${webBase}/tree/${pagesBranch}`,
+				debsWeb: `${webBase}/tree/debs`
+			};
+		}
+
+		function renderRepoContext() {
+			if (!state.repo) {
+				return;
+			}
+
+			const repoLabel = `${state.repo.owner}/${state.repo.repo}`;
+			document.title = `${repoLabel} · PPA Repository`;
+			elements.heroTitle.textContent = repoLabel;
+			elements.aptRepoLink.href = state.repo.pagesUrl;
+			elements.githubRepoLink.href = state.repo.webBase;
+		}
+
+		function getSnapshotCacheKey() {
+			if (!state.repo) {
+				return "";
+			}
+			return `ppa-github-autoindex:${state.repo.owner}/${state.repo.repo}:${state.repo.pagesBranch}`;
+		}
+
+		function saveSnapshotToCache(snapshot) {
+			const cacheKey = getSnapshotCacheKey();
+			if (!cacheKey) {
+				return;
+			}
+			try {
+				localStorage.setItem(cacheKey, JSON.stringify({
+					savedAt: new Date().toISOString(),
+					releaseText: snapshot.releaseText,
+					sourcesText: snapshot.sourcesText || "",
+					packagesText: snapshot.packagesText
+				}));
+			} catch (error) {
+				console.warn("Snapshot cache write failed.", error);
+			}
+		}
+
+		function loadSnapshotFromCache() {
+			const cacheKey = getSnapshotCacheKey();
+			if (!cacheKey) {
+				return null;
+			}
+			try {
+				const rawValue = localStorage.getItem(cacheKey);
+				if (!rawValue) {
+					return null;
+				}
+				const snapshot = JSON.parse(rawValue);
+				if (!snapshot || typeof snapshot.releaseText !== "string" || typeof snapshot.packagesText !== "string") {
+					return null;
+				}
+				return {
+					savedAt: snapshot.savedAt || "",
+					releaseText: snapshot.releaseText,
+					sourcesText: snapshot.sourcesText || "",
+					packagesText: snapshot.packagesText
+				};
+			} catch (error) {
+				console.warn("Snapshot cache read failed.", error);
+				return null;
+			}
+		}
+
+		function parseDeb822(text) {
+			const normalized = text.replace(/\r\n/g, "\n").trim();
+			if (!normalized) {
+				return [];
+			}
+
+			const blocks = normalized.split(/\n\n+/);
+			return blocks.map(parseDeb822Block).filter((entry) => Object.keys(entry).length > 0);
+		}
+
+		function parseDeb822Block(block) {
+			const lines = block.split("\n");
+			const entry = {};
+			let currentKey = "";
+			for (const line of lines) {
+				if (!line.trim()) {
+					continue;
+				}
+				if (/^[ \t]/.test(line) && currentKey) {
+					entry[currentKey] += `\n${line.slice(1)}`;
+					continue;
+				}
+				const match = line.match(/^([^:]+):\s*(.*)$/);
+				if (!match) {
+					continue;
+				}
+				currentKey = match[1].trim();
+				entry[currentKey] = match[2].trim();
+			}
+			return entry;
+		}
+
+		function parseRelease(text) {
+			const [entry] = parseDeb822(text);
+			return entry || {};
+		}
+
+		function stripInlineSignedText(text) {
+			const raw = String(text || "");
+			if (!raw.includes("-----BEGIN PGP SIGNATURE-----")) {
+				return raw;
+			}
+			const normalized = raw.replace(/\r\n/g, "\n");
+			const marker = "\n\n";
+			const start = normalized.indexOf(marker);
+			if (start < 0) {
+				return normalized;
+			}
+			const payload = normalized.slice(start + marker.length);
+			const signatureStart = payload.indexOf("\n-----BEGIN PGP SIGNATURE-----");
+			if (signatureStart < 0) {
+				return payload;
+			}
+			return payload.slice(0, signatureStart).trim();
+		}
+
+		function parseReleaseIndexEntries(sectionText, algorithm) {
+			if (!sectionText) {
+				return [];
+			}
+			return String(sectionText)
+				.split(/\n+/)
+				.map((line) => line.trim())
+				.filter(Boolean)
+				.map((line) => line.match(/^([0-9a-fA-F]+)\s+(\d+)\s+(.+)$/))
+				.filter(Boolean)
+				.map((match) => ({
+					algorithm,
+					hash: match[1],
+					size: Number(match[2]),
+					path: match[3]
+				}));
+		}
+
+		function hashString(text) {
+			let hash = 2166136261;
+			for (let index = 0; index < text.length; index += 1) {
+				hash ^= text.charCodeAt(index);
+				hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
+			}
+			return (hash >>> 0).toString(16).padStart(8, "0");
+		}
+
+		function buildSnapshotFingerprint(releaseText, packagesText) {
+			const releasePart = String(releaseText || "").trim();
+			const packagesPart = String(packagesText || "").trim();
+			return hashString(`${releasePart}\n@@\n${packagesPart}`);
+		}
+
+		function normalizeMultiline(value) {
+			return String(value || "")
+				.split("\n")
+				.map((line) => line.trim())
+				.filter(Boolean)
+				.join(" ");
+		}
+
+		function parseBuildDate(value) {
+			const rawValue = String(value || "").trim();
+			if (!rawValue) {
+				return null;
+			}
+			const date = new Date(rawValue);
+			return Number.isNaN(date.valueOf()) ? null : date.toISOString();
+		}
+
+		// Debian Policy 5.6.12: compare epoch, upstream version, then revision.
+		function compareDigitStrings(left, right) {
+			const a = left.replace(/^0+/, "");
+			const b = right.replace(/^0+/, "");
+			return a.length - b.length || (a < b ? -1 : a > b ? 1 : 0);
+		}
+
+		function debianCharacterOrder(character) {
+			if (character === "~") return -1;
+			if (!character || /[0-9]/.test(character)) return 0;
+			if (/[A-Za-z]/.test(character)) return character.charCodeAt(0);
+			return character.charCodeAt(0) + 256;
+		}
+
+		function compareDebianVersionPart(left, right) {
+			let a = 0;
+			let b = 0;
+			while (a < left.length || b < right.length) {
+				while ((a < left.length && !/[0-9]/.test(left[a])) || (b < right.length && !/[0-9]/.test(right[b]))) {
+					const difference = debianCharacterOrder(left[a]) - debianCharacterOrder(right[b]);
+					if (difference) return difference;
+					if (a < left.length && !/[0-9]/.test(left[a])) a += 1;
+					if (b < right.length && !/[0-9]/.test(right[b])) b += 1;
+				}
+				const aStart = a;
+				const bStart = b;
+				while (a < left.length && /[0-9]/.test(left[a])) a += 1;
+				while (b < right.length && /[0-9]/.test(right[b])) b += 1;
+				const difference = compareDigitStrings(left.slice(aStart, a), right.slice(bStart, b));
+				if (difference) return difference;
+			}
+			return 0;
+		}
+
+		function splitDebianVersion(version) {
+			let value = String(version || "");
+			let epoch = "0";
+			const epochMatch = value.match(/^(\d+):/);
+			if (epochMatch) {
+				epoch = epochMatch[1];
+				value = value.slice(epochMatch[0].length);
+			}
+			const revisionSeparator = value.lastIndexOf("-");
+			return {
+				epoch,
+				upstream: revisionSeparator < 0 ? value : value.slice(0, revisionSeparator),
+				revision: revisionSeparator < 0 ? "0" : value.slice(revisionSeparator + 1)
+			};
+		}
+
+		function compareDebianVersions(left, right) {
+			const a = splitDebianVersion(left);
+			const b = splitDebianVersion(right);
+			return compareDigitStrings(a.epoch, b.epoch)
+				|| compareDebianVersionPart(a.upstream, b.upstream)
+				|| compareDebianVersionPart(a.revision, b.revision);
+		}
+
+		function formatDate(value, withTime = true) {
+			if (!value) {
+				return "Unknown";
+			}
+			const date = new Date(value);
+			if (Number.isNaN(date.valueOf())) {
+				return "Unknown";
+			}
+			return new Intl.DateTimeFormat(undefined, {
+				year: "numeric",
+				month: "short",
+				day: "2-digit",
+				...(withTime ? { hour: "2-digit", minute: "2-digit" } : {})
+			}).format(date);
+		}
+
+		function formatRelativeDate(value) {
+			if (!value) {
+				return "Unknown";
+			}
+			const date = new Date(value);
+			if (Number.isNaN(date.valueOf())) {
+				return "Unknown";
+			}
+			const deltaMs = date.getTime() - Date.now();
+			const formatter = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
+			const minutes = Math.round(deltaMs / 60000);
+			if (Math.abs(minutes) < 60) {
+				return formatter.format(minutes, "minute");
+			}
+			const hours = Math.round(minutes / 60);
+			if (Math.abs(hours) < 48) {
+				return formatter.format(hours, "hour");
+			}
+			const days = Math.round(hours / 24);
+			if (Math.abs(days) < 60) {
+				return formatter.format(days, "day");
+			}
+			const months = Math.round(days / 30);
+			if (Math.abs(months) < 24) {
+				return formatter.format(months, "month");
+			}
+			return formatter.format(Math.round(months / 12), "year");
+		}
+
+		function formatBytes(value) {
+			if (!value) {
+				return "-";
+			}
+			const units = ["B", "KB", "MB", "GB"];
+			let current = value;
+			let unitIndex = 0;
+			while (current >= 1024 && unitIndex < units.length - 1) {
+				current /= 1024;
+				unitIndex += 1;
+			}
+			return `${current.toFixed(current >= 10 || unitIndex === 0 ? 0 : 1)} ${units[unitIndex]}`;
+		}
+
+		function parseSourceDebsSha(message) {
+			const match = String(message || "").match(/deploy:\s+([0-9a-f]{7,40})/i);
+			return match ? match[1] : "";
+		}
+
+		function parseDependencyNames(value) {
+			return String(value || "")
+				.split(",")
+				.map((segment) => segment.trim())
+				.filter(Boolean)
+				.map((segment) => segment.split("|")[0].trim())
+				.map((segment) => segment.replace(/\s*\(.*?\)/g, "").trim())
+				.filter(Boolean);
+		}
+
+		function parseDelimitedValues(value) {
+			return String(value || "")
+				.split(",")
+				.map((segment) => segment.trim())
+				.filter(Boolean);
+		}
+
+		function parseSourceField(value, fallbackName) {
+			const raw = String(value || "").trim();
+			if (!raw) {
+				return {
+					name: fallbackName,
+					version: ""
+				};
+			}
+			const match = raw.match(/^([^\s(]+)\s*(?:\(([^)]+)\))?$/);
+			if (!match) {
+				return {
+					name: raw,
+					version: ""
+				};
+			}
+			return {
+				name: match[1],
+				version: match[2] || ""
+			};
+		}
+
+		function parseSourceEntries(text) {
+			return parseDeb822(text).map((entry) => {
+				const files = String(entry.Files || "")
+					.split(/\n+/)
+					.map((line) => line.trim())
+					.filter(Boolean);
+				const binaries = parseDelimitedValues(entry.Binary);
+				return {
+					package: entry.Package || "",
+					version: entry.Version || "",
+					maintainer: normalizeMultiline(entry.Maintainer || ""),
+					uploaders: normalizeMultiline(entry.Uploaders || ""),
+					directory: entry.Directory || "",
+					binaries,
+					files,
+					buildDepends: normalizeMultiline(entry["Build-Depends"] || "")
+				};
+			});
+		}
+
+		function normalizeControl(entry) {
+			return Object.fromEntries(Object.entries(entry).map(([key, value]) => [key, normalizeMultiline(value)]));
+		}
+
+		function normalizePackageEntry(entry, snapshot) {
+			const version = entry.Version || "unknown";
+			const architecture = entry.Architecture || "unknown";
+			const filename = (entry.Filename || "").replace(/^\.\//, "");
+			const control = normalizeControl(entry);
+			const parsedSource = parseSourceField(entry.Source, entry.Package || filename || "unknown");
+			const sourceMeta = state.sourceByBinary.get(entry.Package || "") || null;
+			const buildDateRaw = String(entry["Xb-Build-Date"] || "").trim();
+			return {
+				name: entry.Package || filename || "unknown",
+				normalizedName: slugifyPackageName(entry.Package || filename || "unknown"),
+				version,
+				architecture,
+				description: normalizeMultiline(entry.Description || "No description"),
+				maintainer: normalizeMultiline(entry.Maintainer || "Unknown maintainer"),
+				homepage: entry.Homepage || "",
+				depends: entry.Depends || "",
+				preDepends: entry["Pre-Depends"] || "",
+				recommends: entry.Recommends || "",
+				suggests: entry.Suggests || "",
+				conflicts: entry.Conflicts || "",
+				breaks: entry.Breaks || "",
+				replaces: entry.Replaces || "",
+				provides: entry.Provides || "",
+				enhances: entry.Enhances || "",
+				section: entry.Section || "",
+				priority: entry.Priority || "",
+				multiArch: entry["Multi-Arch"] || "",
+				originalMaintainer: normalizeMultiline(entry["Original-Maintainer"] || ""),
+				builtUsing: normalizeMultiline(entry["Built-Using"] || ""),
+				sourcePackageName: parsedSource.name,
+				sourcePackageVersion: parsedSource.version,
+				sourceDirectory: sourceMeta?.directory || "",
+				sourceMaintainer: sourceMeta?.maintainer || "",
+				sourceBuildDepends: sourceMeta?.buildDepends || "",
+				size: Number(entry.Size || 0),
+				installedSize: Number(entry["Installed-Size"] || 0),
+				filename,
+				sha256: entry.SHA256 || "",
+				md5sum: entry.MD5sum || "",
+				sha1: entry.SHA1 || "",
+				snapshotSha: snapshot.sha,
+				snapshotUrl: snapshot.htmlUrl,
+				sourceDebsSha: snapshot.sourceDebsSha,
+				sourceDebsUrl: snapshot.sourceDebsSha ? `${state.repo.webBase}/commit/${snapshot.sourceDebsSha}` : "",
+				deployedAt: snapshot.date,
+				deployedBy: snapshot.author,
+				buildDateRaw,
+				buildDate: parseBuildDate(buildDateRaw),
+				control,
+				dependencyNames: parseDependencyNames(entry.Depends || ""),
+				provideNames: parseDependencyNames(entry.Provides || ""),
+				recommendNames: parseDependencyNames(entry.Recommends || ""),
+				suggestNames: parseDependencyNames(entry.Suggests || ""),
+				historicalDownloadUrl: snapshot.sha === "current"
+					? `./${encodeURI(filename)}`
+					: `${state.repo.rawBase}/${snapshot.sha}/${encodeURI(filename)}`
+			};
+		}
+
+		function applyReleaseText(releaseText) {
+			const parsedRelease = parseRelease(releaseText);
+			if (!Object.keys(parsedRelease || {}).length) {
+				throw new Error("Release metadata could not be parsed from the resolved snapshot.");
+			}
+			state.inRelease = parsedRelease;
+			state.release = parsedRelease;
+			state.releaseRawText = releaseText;
+			state.releaseIndexes = [
+				...parseReleaseIndexEntries(state.release?.SHA256 || "", "SHA256"),
+				...parseReleaseIndexEntries(state.release?.SHA1 || "", "SHA1"),
+				...parseReleaseIndexEntries(state.release?.MD5Sum || "", "MD5")
+			];
+		}
+
+		function applySourcesText(sourcesText) {
+			state.sourcesRawText = sourcesText || "";
+			if (!sourcesText) {
+				state.sources = [];
+				state.sourceByBinary = new Map();
+				return;
+			}
+			state.sources = parseSourceEntries(sourcesText);
+			const sourceByBinary = new Map();
+			for (const source of state.sources) {
+				for (const binary of source.binaries) {
+					if (!sourceByBinary.has(binary)) {
+						sourceByBinary.set(binary, source);
+					}
+				}
+			}
+			state.sourceByBinary = sourceByBinary;
+		}
+
+		function applyPackagesText(packagesText, snapshotMeta) {
+			state.packagesRawText = packagesText;
+			state.currentPackages = parseDeb822(packagesText).map((entry) => normalizePackageEntry(entry, snapshotMeta));
+		}
+
+		function applySnapshotData(snapshot, snapshotAuthor) {
+			applyReleaseText(snapshot.releaseText);
+			applySourcesText(snapshot.sourcesText || "");
+			applyPackagesText(snapshot.packagesText, {
+				sha: "current",
+				htmlUrl: state.repo.branchWeb,
+				sourceDebsSha: "",
+				date: state.release?.Date || snapshot.savedAt || new Date().toISOString(),
+				author: snapshotAuthor
+			});
+			state.lastSnapshotFingerprint = buildSnapshotFingerprint(state.releaseRawText, state.packagesRawText);
+			buildPackageIndex();
+			render();
+		}
+
+		async function fetchRemoteSnapshot() {
+			const [inReleaseText, releaseText, sourcesText, packagesText] = await Promise.all([
+				fetchOptionalText("./InRelease"),
+				fetchOptionalText("./Release"),
+				fetchOptionalText("./Sources"),
+				fetchText("./Packages")
+			]);
+			const normalizedInRelease = stripInlineSignedText(inReleaseText);
+			const resolvedReleaseText = normalizedInRelease.trim() || releaseText;
+			if (!resolvedReleaseText.trim()) {
+				throw new Error("Neither InRelease nor Release could be parsed from the deployed repository.");
+			}
+			return {
+				releaseText: resolvedReleaseText,
+				sourcesText: sourcesText || "",
+				packagesText
+			};
+		}
+
+		async function loadRelease() {
+			const [inReleaseText, releaseText] = await Promise.all([
+				fetchOptionalText("./InRelease"),
+				fetchOptionalText("./Release")
+			]);
+			const normalizedInRelease = stripInlineSignedText(inReleaseText);
+			const parsedInRelease = parseRelease(normalizedInRelease);
+			const parsedRelease = parseRelease(releaseText);
+			state.inRelease = parsedInRelease;
+			state.release = Object.keys(parsedInRelease).length ? parsedInRelease : parsedRelease;
+			state.releaseRawText = Object.keys(parsedInRelease).length ? normalizedInRelease : releaseText;
+			state.releaseIndexes = [
+				...parseReleaseIndexEntries(state.release?.SHA256 || "", "SHA256"),
+				...parseReleaseIndexEntries(state.release?.SHA1 || "", "SHA1"),
+				...parseReleaseIndexEntries(state.release?.MD5Sum || "", "MD5")
+			];
+			if (!Object.keys(state.release || {}).length) {
+				throw new Error("Neither InRelease nor Release could be parsed from the deployed repository.");
+			}
+		}
+
+		async function loadSources() {
+			const sourcesText = await fetchOptionalText("./Sources");
+			if (!sourcesText) {
+				state.sources = [];
+				state.sourceByBinary = new Map();
+				return;
+			}
+			state.sources = parseSourceEntries(sourcesText);
+			const sourceByBinary = new Map();
+			for (const source of state.sources) {
+				for (const binary of source.binaries) {
+					if (!sourceByBinary.has(binary)) {
+						sourceByBinary.set(binary, source);
+					}
+				}
+			}
+			state.sourceByBinary = sourceByBinary;
+		}
+
+		async function loadCurrentPackages() {
+			const packagesText = await fetchText("./Packages");
+			state.packagesRawText = packagesText;
+			state.currentPackages = parseDeb822(packagesText).map((entry) => normalizePackageEntry(entry, {
+				sha: "current",
+				htmlUrl: state.repo.branchWeb,
+				sourceDebsSha: "",
+				date: state.release?.Date || new Date().toISOString(),
+				author: "Current snapshot"
+			}));
+		}
+
+		function applyCurrentOnlySnapshot() {
+			return state.currentPackages.map((entry) => ({ ...entry }));
+		}
+
+		function buildPackageIndex() {
+			const grouped = new Map();
+			const releaseArchitectures = new Set(
+				String(state.release?.Architectures || "")
+					.split(/\s+/)
+					.map((item) => item.trim())
+					.filter(Boolean)
+			);
+
+			for (const pkg of applyCurrentOnlySnapshot()) {
+					const current = grouped.get(pkg.name) || {
+						name: pkg.name,
+						normalizedName: pkg.normalizedName,
+						versions: new Map(),
+						maintainers: new Set(),
+						descriptions: new Set(),
+						architectures: new Set(),
+						homepages: new Set(),
+						sourcePackages: new Set(),
+						dependencies: new Set(),
+						recommends: new Set(),
+						suggests: new Set(),
+						provides: new Set(),
+						latestDeployedAt: "",
+						firstSeenAt: "",
+						deployments: []
+					};
+
+					current.maintainers.add(pkg.maintainer);
+					current.descriptions.add(pkg.description);
+					current.architectures.add(pkg.architecture);
+					for (const dependency of pkg.dependencyNames) {
+						current.dependencies.add(dependency);
+					}
+					if (pkg.homepage) {
+						current.homepages.add(pkg.homepage);
+					}
+					if (pkg.sourcePackageName) {
+						current.sourcePackages.add(pkg.sourcePackageName);
+					}
+					for (const value of pkg.recommendNames) {
+						current.recommends.add(value);
+					}
+					for (const value of pkg.suggestNames) {
+						current.suggests.add(value);
+					}
+					for (const value of pkg.provideNames) {
+						current.provides.add(value);
+					}
+
+					const versionEntry = current.versions.get(pkg.version) || {
+						version: pkg.version,
+						description: pkg.description,
+						maintainers: new Set(),
+						architectures: new Set(),
+						dependencies: new Set(),
+						entries: [],
+						control: pkg.control
+					};
+					versionEntry.maintainers.add(pkg.maintainer);
+					versionEntry.architectures.add(pkg.architecture);
+					for (const dependency of pkg.dependencyNames) {
+						versionEntry.dependencies.add(dependency);
+					}
+					versionEntry.entries.push(pkg);
+					current.versions.set(pkg.version, versionEntry);
+					current.deployments.push(pkg);
+
+					if (!current.latestDeployedAt || new Date(pkg.deployedAt) > new Date(current.latestDeployedAt)) {
+						current.latestDeployedAt = pkg.deployedAt;
+					}
+
+					if (!current.firstSeenAt || new Date(pkg.deployedAt) < new Date(current.firstSeenAt)) {
+						current.firstSeenAt = pkg.deployedAt;
+					}
+
+					grouped.set(pkg.name, current);
+				}
+
+			state.packages = Array.from(grouped.values()).map((pkg) => {
+				const versions = Array.from(pkg.versions.values())
+					.map((entry) => ({
+						version: entry.version,
+						description: entry.description,
+						maintainers: Array.from(entry.maintainers),
+						architectures: Array.from(entry.architectures).sort(),
+						dependencies: Array.from(entry.dependencies).sort(),
+						control: entry.control,
+						entries: entry.entries.sort((left, right) => new Date(right.buildDate || right.deployedAt) - new Date(left.buildDate || left.deployedAt))
+					}))
+					.sort((left, right) => compareDebianVersions(right.version, left.version));
+
+				const currentEntries = pkg.deployments;
+				const latestByArchitecture = new Map();
+				for (const entry of currentEntries) {
+					const previous = latestByArchitecture.get(entry.architecture);
+					const comparison = previous ? compareDebianVersions(entry.version, previous.version) : 1;
+					if (comparison > 0 || (comparison === 0 && new Date(entry.buildDate || entry.deployedAt) > new Date(previous.buildDate || previous.deployedAt))) {
+						latestByArchitecture.set(entry.architecture, entry);
+					}
+				}
+				const newestEntries = Array.from(latestByArchitecture.values()).sort((left, right) => left.architecture.localeCompare(right.architecture));
+				return {
+					name: pkg.name,
+					normalizedName: pkg.normalizedName,
+					latestEntry: versions[0]?.entries[0] || null,
+					newestEntries,
+					latestDeployedAt: pkg.latestDeployedAt,
+					firstSeenAt: pkg.firstSeenAt,
+					maintainers: Array.from(pkg.maintainers),
+					descriptions: Array.from(pkg.descriptions),
+					architectures: Array.from(pkg.architectures).sort(),
+					homepages: Array.from(pkg.homepages),
+					sourcePackages: Array.from(pkg.sourcePackages).sort(),
+					dependencies: Array.from(pkg.dependencies).sort(),
+					recommends: Array.from(pkg.recommends).sort(),
+					suggests: Array.from(pkg.suggests).sort(),
+					provides: Array.from(pkg.provides).sort(),
+					versions,
+					deploymentCount: currentEntries.length,
+					snapshotCount: 1,
+					currentEntries,
+					searchableText: [
+						pkg.name,
+						Array.from(pkg.maintainers).join(" "),
+						Array.from(pkg.descriptions).join(" "),
+						Array.from(pkg.dependencies).join(" "),
+						Array.from(pkg.sourcePackages).join(" "),
+						Array.from(pkg.recommends).join(" "),
+						Array.from(pkg.suggests).join(" "),
+						Array.from(pkg.provides).join(" "),
+						versions.map((entry) => entry.version).join(" "),
+						Array.from(pkg.architectures).join(" ")
+					].join(" ").toLowerCase()
+				};
+			});
+
+			for (const architecture of state.packages.flatMap((pkg) => pkg.architectures)) {
+				releaseArchitectures.add(architecture);
+			}
+
+			elements.archFilter.innerHTML = [
+				'<option value="all">All architectures</option>',
+				...Array.from(releaseArchitectures).sort().map((architecture) => `<option value="${escapeHtml(architecture)}">${escapeHtml(architecture)}</option>`)
+			].join("");
+		}
+
+		function findPackageByName(name) {
+			const normalized = slugifyPackageName(name);
+			return state.packages.find((pkg) => pkg.normalizedName === normalized) || null;
+		}
+
+		function getSelectedPackage() {
+			return findPackageByName(state.selectedName);
+		}
+
+		function getSelectedVersionEntry(pkg) {
+			if (!pkg) {
+				return null;
+			}
+			const availableVersions = state.selectedBuildArchitecture
+				? pkg.versions.filter((entry) => entry.architectures.includes(state.selectedBuildArchitecture))
+				: pkg.versions;
+			if (!state.selectedVersion || state.selectedVersion === "latest") {
+				return availableVersions[0] || null;
+			}
+			return availableVersions.find((entry) => entry.version === state.selectedVersion) || availableVersions[0] || null;
+		}
+
+		function getSelectedBuildEntry(pkg, preferredVersionEntry) {
+			if (!pkg || !preferredVersionEntry) {
+				return null;
+			}
+			return preferredVersionEntry.entries.find((entry) => entry.architecture === state.selectedBuildArchitecture)
+				|| preferredVersionEntry.entries[0] || null;
+		}
+
+		function getFilteredPackages() {
+			const query = state.filters.query.trim().toLowerCase();
+			const architecture = state.filters.architecture;
+			const packages = state.packages.filter((pkg) => {
+				const matchesQuery = !query || pkg.searchableText.includes(query);
+				const matchesArch = architecture === "all" || pkg.architectures.includes(architecture);
+				return matchesQuery && matchesArch;
+			});
+
+			switch (state.filters.sort) {
+				case "name":
+					packages.sort((left, right) => left.name.localeCompare(right.name));
+					break;
+				case "versions":
+					packages.sort((left, right) => right.versions.length - left.versions.length || left.name.localeCompare(right.name));
+					break;
+				case "history":
+					packages.sort((left, right) => right.deploymentCount - left.deploymentCount || left.name.localeCompare(right.name));
+					break;
+				case "latest":
+				default:
+					packages.sort((left, right) => new Date(right.latestDeployedAt) - new Date(left.latestDeployedAt));
+					break;
+			}
+
+			return packages;
+		}
+
+		function buildUrlParams(overrides = {}) {
+			const params = new URLSearchParams();
+			const base = {
+				...getQueryOverrides(),
+				q: state.filters.query,
+				arch: state.filters.architecture,
+				sort: state.filters.sort,
+				pkg: state.selectedName,
+				version: state.selectedVersion,
+				tab: state.activeTab,
+				...overrides
+			};
+
+			if (base.owner) {
+				params.set("owner", base.owner);
+			}
+			if (base.repo) {
+				params.set("repo", base.repo);
+			}
+			if (base.branch) {
+				params.set("branch", base.branch);
+			}
+			if (base.q) {
+				params.set("q", base.q);
+			}
+			if (base.arch && base.arch !== "all") {
+				params.set("arch", base.arch);
+			}
+			if (base.sort && base.sort !== "latest") {
+				params.set("sort", base.sort);
+			}
+			if (base.pkg) {
+				params.set("pkg", base.pkg);
+			}
+			if (base.version && base.version !== "latest") {
+				params.set("version", base.version);
+			}
+			if (base.tab && base.tab !== "overview") {
+				params.set("tab", base.tab);
+			}
+			return params;
+		}
+
+		function updateUrlState(replace = false) {
+			if (state.urlSyncSuspended) {
+				return;
+			}
+			const params = buildUrlParams();
+			const nextUrl = `${location.pathname}${params.toString() ? `?${params.toString()}` : ""}`;
+			history[replace ? "replaceState" : "pushState"](null, "", nextUrl);
+		}
+
+		function buildPackageUrl(name, version = "latest", tab = state.activeTab) {
+			const params = buildUrlParams({ pkg: name, version, tab });
+			return `${location.pathname}?${params.toString()}`;
+		}
+
+		function applyUrlState() {
+			const params = new URLSearchParams(location.search);
+			const previousName = state.selectedName;
+			const previousVersion = state.selectedVersion;
+			state.urlSyncSuspended = true;
+			state.filters.query = params.get("q") || "";
+			state.filters.architecture = params.get("arch") || "all";
+			state.filters.sort = params.get("sort") || "latest";
+			state.selectedName = params.get("pkg") || "";
+			state.selectedVersion = params.get("version") || "latest";
+			if (state.selectedName !== previousName || state.selectedVersion !== previousVersion) {
+				state.selectedBuildArchitecture = "";
+			}
+			state.activeTab = params.get("tab") || "overview";
+			elements.search.value = state.filters.query;
+			elements.archFilter.value = state.filters.architecture;
+			elements.sortFilter.value = state.filters.sort;
+			state.urlSyncSuspended = false;
+		}
+
+		function ensureSelectionConsistency(filteredPackages) {
+			if (!state.packages.length) {
+				state.selectedName = "";
+				state.selectedVersion = "latest";
+				state.selectedBuildArchitecture = "";
+				state.activeTab = "overview";
+				return;
+			}
+
+			if (state.selectedName && !findPackageByName(state.selectedName)) {
+				state.selectedName = "";
+			}
+
+			const pkg = getSelectedPackage();
+			if (!pkg) {
+				state.selectedVersion = "latest";
+				state.selectedBuildArchitecture = "";
+				state.activeTab = "overview";
+				return;
+			}
+
+			if (state.selectedVersion !== "latest" && !pkg.versions.some((entry) => entry.version === state.selectedVersion)) {
+				state.selectedVersion = "latest";
+			}
+		}
+
+		function updateVersionFilter(pkg) {
+			if (!pkg) {
+				elements.versionFilter.innerHTML = '<option value="latest">Newest</option>';
+				elements.versionFilter.value = "latest";
+				return;
+			}
+			const availableVersions = pkg.versions.filter((entry) => entry.architectures.includes(state.selectedBuildArchitecture));
+			elements.versionFilter.innerHTML = [
+				'<option value="latest">Newest</option>',
+				...availableVersions.map((entry) => `<option value="${escapeHtml(entry.version)}">${escapeHtml(entry.version)}</option>`)
+			].join("");
+			elements.versionFilter.value = state.selectedVersion === "latest" ? "latest" : state.selectedVersion;
+		}
+
+		function updateBuildArchitectureFilter(pkg) {
+			if (!pkg || !pkg.currentEntries.length) {
+				elements.detailArchFilter.innerHTML = '<option value="" disabled>No architecture available</option>';
+				elements.detailArchFilter.value = "";
+				state.selectedBuildArchitecture = "";
+				return;
+			}
+
+			const architectures = pkg.architectures;
+			elements.detailArchFilter.innerHTML = architectures
+				.map((architecture) => `<option value="${escapeHtml(architecture)}">${escapeHtml(architecture)}</option>`)
+				.join("");
+
+			if (!state.selectedBuildArchitecture || !architectures.includes(state.selectedBuildArchitecture)) {
+				const requestedVersion = pkg.versions.find((entry) => entry.version === state.selectedVersion) || pkg.versions[0];
+				state.selectedBuildArchitecture = requestedVersion?.architectures[0] || architectures[0] || "";
+			}
+			elements.detailArchFilter.value = state.selectedBuildArchitecture;
+		}
+
+		function renderStateSummary(filteredPackages) {
+			const pills = [
+				`<span class="state-pill">shown=${filteredPackages.length}</span>`,
+				`<span class="state-pill">arch=${escapeHtml(state.filters.architecture)}</span>`,
+				`<span class="state-pill">sort=${escapeHtml(state.filters.sort)}</span>`
+			];
+			if (state.selectedName) {
+				pills.push(`<span class="state-pill">pkg=${escapeHtml(state.selectedName)}</span>`);
+			}
+			if (state.selectedVersion !== "latest") {
+				pills.push(`<span class="state-pill">version=${escapeHtml(state.selectedVersion)}</span>`);
+			}
+			if (state.activeTab !== "overview") {
+				pills.push(`<span class="state-pill">tab=${escapeHtml(state.activeTab)}</span>`);
+			}
+			elements.stateSummary.innerHTML = pills.join("");
+		}
+
+		function renderNewestVersions(pkg) {
+			const groups = new Map();
+			for (const entry of pkg.newestEntries) {
+				const architectures = groups.get(entry.version) || [];
+				architectures.push(entry.architecture);
+				groups.set(entry.version, architectures);
+			}
+			return `<div class="version-summary">${Array.from(groups.entries())
+				.sort(([left], [right]) => compareDebianVersions(right, left))
+				.map(([version, architectures]) => `<div class="version-summary-line" title="${escapeHtml(`${version} (${architectures.join(", ")})`)}"><strong>${escapeHtml(version)}</strong><span class="version-summary-arch">(${escapeHtml(architectures.join(", "))})</span></div>`)
+				.join("")}</div>`;
+		}
+
+		function renderList() {
+			const packages = getFilteredPackages();
+			const showBuildDateColumn = state.packages.some((pkg) => pkg.currentEntries.some((entry) => entry.buildDateRaw));
+			ensureSelectionConsistency(packages);
+			const selectedPackage = getSelectedPackage();
+			renderStateSummary(packages);
+			elements.packageCount.textContent = `${packages.length} shown out of ${state.packages.length}`;
+
+			if (!packages.length) {
+				elements.listRoot.innerHTML = '<div class="empty">No packages match the current filters.</div>';
+				return;
+			}
+
+			const rows = packages.map((pkg) => {
+				const latest = pkg.latestEntry;
+				const current = latest;
+				const buildDateEntry = pkg.newestEntries.find((entry) => entry.buildDateRaw) || null;
+				const isActive = selectedPackage && selectedPackage.name === pkg.name;
+				const artifactName = current?.filename || "-";
+				const description = latest?.description || pkg.descriptions[0] || "No description";
+				const maintainer = current?.maintainer || pkg.maintainers[0] || "Unknown";
+				const buildDateCell = showBuildDateColumn
+					? `
+						<td>
+							${buildDateEntry?.buildDate
+								? `<div title="${escapeHtml(buildDateEntry.buildDateRaw)}">${escapeHtml(formatDate(buildDateEntry.buildDate))}</div><div class="hint">${escapeHtml(formatRelativeDate(buildDateEntry.buildDate))}</div>`
+								: buildDateEntry?.buildDateRaw
+									? `<div title="${escapeHtml(buildDateEntry.buildDateRaw)}">${escapeHtml(buildDateEntry.buildDateRaw)}</div>`
+									: '<span class="muted">-</span>'
+							}
+						</td>
+					`
+					: "";
+				const homepageIcon = current?.homepage
+					? `<a class="icon-link" href="${escapeHtml(current.homepage)}" target="_blank" rel="noreferrer" title="Open homepage" aria-label="Open homepage">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="M10 14 19 5"></path><path d="M19 14v5H5V5h5"></path></svg>
+					</a>`
+					: "";
+				return `
+					<tr class="${isActive ? "is-active" : ""}" data-package-row="${escapeHtml(pkg.name)}" aria-selected="${isActive ? "true" : "false"}">
+						<td>
+							<div class="table-name-row">
+								<div class="table-name" title="${escapeHtml(pkg.name)}">${escapeHtml(pkg.name)}</div>
+								${homepageIcon}
+							</div>
+							<div class="table-description" title="${escapeHtml(description)}">${escapeHtml(description)}</div>
+						</td>
+						<td class="version-cell">${renderNewestVersions(pkg)}</td>
+						<td class="maintainer-cell"><span class="maintainer-text" title="${escapeHtml(maintainer)}">${escapeHtml(maintainer)}</span></td>
+						${buildDateCell}
+						<td class="artifact-cell"><span class="artifact-text" title="${escapeHtml(artifactName)}">${escapeHtml(artifactName)}</span></td>
+					</tr>
+				`;
+			}).join("");
+
+			elements.listRoot.innerHTML = `
+				<table aria-label="All packages">
+					<colgroup>
+						<col class="col-package">
+						<col class="col-version">
+						<col class="col-maintainer">
+						${showBuildDateColumn ? '<col class="col-build">' : ""}
+						<col class="col-artifact">
+					</colgroup>
+					<thead>
+						<tr>
+							<th><button class="table-sort ${state.filters.sort === "name" ? "is-active" : ""}" data-sort="name" type="button">Package</button></th>
+							<th><button class="table-sort ${state.filters.sort === "versions" ? "is-active" : ""}" data-sort="versions" type="button">Newest by Architecture</button></th>
+							<th>Maintainer</th>
+							${showBuildDateColumn ? '<th>Build Date</th>' : ""}
+							<th>Artifact</th>
+						</tr>
+					</thead>
+					<tbody>${rows}</tbody>
+				</table>
+			`;
+
+			for (const button of elements.listRoot.querySelectorAll(".table-sort")) {
+				button.addEventListener("click", () => {
+					state.filters.sort = button.dataset.sort || "latest";
+					elements.sortFilter.value = state.filters.sort;
+					updateUrlState();
+					render();
+				});
+			}
+
+			for (const row of elements.listRoot.querySelectorAll("[data-package-row]")) {
+				row.addEventListener("click", (event) => {
+					const interactiveTarget = event.target.closest("a, button, select, input");
+					if (interactiveTarget) {
+						return;
+					}
+					state.selectedName = row.dataset.packageRow || "";
+					state.selectedVersion = "latest";
+					state.selectedBuildArchitecture = "";
+					state.activeTab = "overview";
+					updateUrlState();
+					render();
+				});
+
+				row.addEventListener("keydown", (event) => {
+					if (event.key !== "Enter" && event.key !== " ") {
+						return;
+					}
+					event.preventDefault();
+					state.selectedName = row.dataset.packageRow || "";
+					state.selectedVersion = "latest";
+					state.selectedBuildArchitecture = "";
+					state.activeTab = "overview";
+					updateUrlState();
+					render();
+				});
+				row.tabIndex = 0;
+			}
+		}
+
+		function renderOverviewTab(pkg, versionEntry, current) {
+			const dependencyLinks = current.dependencyNames.length
+				? current.dependencyNames.map((dependencyName) => {
+					const dependencyPackage = findPackageByName(dependencyName);
+					if (!dependencyPackage) {
+						return `<span class="dep-pill">${escapeHtml(dependencyName)}</span>`;
+					}
+					return `<a class="dep-link" href="${escapeHtml(buildPackageUrl(dependencyPackage.name, "latest", "overview"))}" data-dependency-link="${escapeHtml(dependencyPackage.name)}">${escapeHtml(dependencyPackage.name)}</a>`;
+				}).join("")
+				: '<span class="muted">No dependency packages declared.</span>';
+
+			const relationLines = [
+				{ label: "Pre-Depends", value: current.preDepends },
+				{ label: "Recommends", value: current.recommends },
+				{ label: "Suggests", value: current.suggests },
+				{ label: "Provides", value: current.provides },
+				{ label: "Conflicts", value: current.conflicts },
+				{ label: "Breaks", value: current.breaks },
+				{ label: "Replaces", value: current.replaces }
+			].flatMap((item) => String(item.value || "")
+				.split("|")
+				.map((piece) => piece.trim())
+				.filter(Boolean)
+				.map((piece) => `${item.label}: ${piece}`)
+			);
+
+			return `
+				<div class="detail-hero">
+					<div class="detail-title-row">
+						<div>
+							<h4 class="detail-title">${escapeHtml(pkg.name)}</h4>
+							<div class="detail-intro">${escapeHtml(current.description)}</div>
+						</div>
+						<div class="inline-list">
+							${current.homepage ? `<a class="icon-link" href="${escapeHtml(current.homepage)}" target="_blank" rel="noreferrer" title="Open homepage" aria-label="Open homepage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="M10 14 19 5"></path><path d="M19 14v5H5V5h5"></path></svg></a>` : ""}
+							<span class="tag">${escapeHtml(versionEntry.version)}</span>
+							<span class="tag">${escapeHtml(current.architecture)}</span>
+							<span class="tag">${pkg.deploymentCount} deployments</span>
+						</div>
+					</div>
+
+					<div class="detail-actions">
+						<a class="action-link" href="${escapeHtml(current.historicalDownloadUrl)}" target="_blank" rel="noreferrer">Download selected artifact</a>
+					</div>
+				</div>
+
+				<div class="detail-grid">
+					<div class="detail-card"><strong>Selected version</strong><div>${escapeHtml(versionEntry.version)}</div></div>
+					<div class="detail-card"><strong>Published</strong><div>${escapeHtml(formatDate(pkg.latestDeployedAt))}</div></div>
+					<div class="detail-card"><strong>Source package</strong><div>${escapeHtml(current.sourcePackageName || "-")}${current.sourcePackageVersion ? ` (${escapeHtml(current.sourcePackageVersion)})` : ""}</div></div>
+					<div class="detail-card"><strong>Source maintainer</strong><div>${escapeHtml(current.sourceMaintainer || current.originalMaintainer || "-")}</div></div>
+					<div class="detail-card"><strong>Maintainers</strong><div>${escapeHtml(versionEntry.maintainers.join(" / "))}</div></div>
+					<div class="detail-card"><strong>Architectures</strong><div>${escapeHtml(versionEntry.architectures.join(", "))}</div></div>
+					<div class="detail-card"><strong>Multi-Arch</strong><div>${escapeHtml(current.multiArch || "-")}</div></div>
+					<div class="detail-card"><strong>Built-Using</strong><div>${escapeHtml(current.builtUsing || "-")}</div></div>
+					<div class="detail-card"><strong>File</strong><div>${escapeHtml(current.filename || "-")}</div></div>
+					<div class="detail-card"><strong>Package size</strong><div>${escapeHtml(formatBytes(current.size))}</div></div>
+					<div class="detail-card"><strong>Installed size</strong><div>${escapeHtml(current.installedSize ? `${current.installedSize} KB` : "-")}</div></div>
+					<div class="detail-card"><strong>Build date</strong><div>${escapeHtml(current.buildDate ? formatDate(current.buildDate) : (current.buildDateRaw || "Unavailable"))}</div></div>
+					<div class="detail-card"><strong>Section</strong><div>${escapeHtml(current.section || "-")}</div></div>
+					<div class="detail-card"><strong>Priority</strong><div>${escapeHtml(current.priority || "-")}</div></div>
+				</div>
+
+				<div class="description">${escapeHtml(current.description)}</div>
+
+				<div class="dependency-grid">
+					<div class="dependency-block">
+						<strong>Dependency Packages</strong>
+						<div class="dep-list">${dependencyLinks}</div>
+					</div>
+					<div class="dependency-block">
+						<strong>Checksums</strong>
+						<div class="dep-list">
+							<span class="dep-pill">SHA256 ${escapeHtml((current.sha256 || "-").slice(0, 12) || "-")}</span>
+							<span class="dep-pill">MD5 ${escapeHtml((current.md5sum || "-").slice(0, 12) || "-")}</span>
+						</div>
+					</div>
+					<div class="dependency-block">
+						<strong>APT Relations</strong>
+						<div class="relation-lines">${relationLines.length
+							? relationLines.map((line) => `<div class="relation-line">${escapeHtml(line)}</div>`).join("")
+							: '<div class="control-value">No additional relation fields in this package entry.</div>'
+						}</div>
+					</div>
+					<div class="dependency-block">
+						<strong>Repository Index Insight</strong>
+						<div class="control-value">${escapeHtml(state.releaseIndexes.length ? `${state.releaseIndexes.length} index records parsed from Release/InRelease checksums.` : "No index checksum blocks parsed from Release metadata.")}</div>
+					</div>
+				</div>
+			`;
+		}
+
+		function renderControlTab(current) {
+			const rows = Object.entries(current.control)
+				.sort(([left], [right]) => left.localeCompare(right))
+				.map(([key, value]) => `
+					<tr>
+						<th scope="row">${escapeHtml(key)}</th>
+						<td><div class="control-value">${escapeHtml(value || "-")}</div></td>
+					</tr>
+				`).join("");
+
+			return `
+				<div class="control-block">
+					<strong>APT Control Metadata</strong>
+					<div class="control-value">Every field parsed from the selected Deb822 entry.</div>
+				</div>
+				<div class="control-table-wrap">
+					<table class="control-table" aria-label="APT control metadata">
+						<tbody>${rows}</tbody>
+					</table>
+				</div>
+			`;
+		}
+
+		function renderDetail() {
+			const pkg = getSelectedPackage();
+			const isMobile = window.matchMedia("(max-width: 900px)").matches;
+			if (!pkg) {
+				updateVersionFilter(null);
+				updateBuildArchitectureFilter(null);
+				elements.layout.classList.remove("has-selection");
+				elements.detailPanel.classList.add("is-hidden");
+				elements.detailPanel.setAttribute("aria-hidden", "true");
+				document.body.classList.remove("mobile-detail-open");
+				elements.detailCaption.textContent = "No package selected";
+				elements.detailRoot.innerHTML = '<div class="empty">The table stays unselected by default. Select any package row, or open <code>?pkg=package-name</code>. When only the package is provided, the newest version is shown automatically.</div>';
+				return;
+			}
+
+			elements.layout.classList.add("has-selection");
+			elements.detailPanel.classList.remove("is-hidden");
+			elements.detailPanel.setAttribute("aria-hidden", "false");
+			document.body.classList.toggle("mobile-detail-open", isMobile);
+
+			updateBuildArchitectureFilter(pkg);
+			const preferredVersionEntry = getSelectedVersionEntry(pkg);
+			if (state.selectedVersion !== "latest" && preferredVersionEntry?.version !== state.selectedVersion) {
+				state.selectedVersion = "latest";
+			}
+			updateVersionFilter(pkg);
+			const current = getSelectedBuildEntry(pkg, preferredVersionEntry) || pkg.latestEntry;
+			const versionEntry = preferredVersionEntry;
+			if (!versionEntry || !current) {
+				elements.detailRoot.innerHTML = '<div class="warning">Selected package has no resolved entries.</div>';
+				return;
+			}
+
+			elements.detailCaption.textContent = `${pkg.name} · ${versionEntry.version} · ${pkg.versions.length} versions available`;
+			for (const button of elements.tabButtons) {
+				button.classList.toggle("is-active", button.dataset.tab === state.activeTab);
+			}
+
+			let content = "";
+			switch (state.activeTab) {
+				case "control":
+					content = renderControlTab(current);
+					break;
+				case "overview":
+				default:
+					content = renderOverviewTab(pkg, versionEntry, current);
+					break;
+			}
+
+			elements.detailRoot.innerHTML = content;
+
+			for (const dependencyLink of elements.detailRoot.querySelectorAll("[data-dependency-link]")) {
+				dependencyLink.addEventListener("click", (event) => {
+					event.preventDefault();
+					state.selectedName = dependencyLink.dataset.dependencyLink || "";
+					state.selectedVersion = "latest";
+					state.selectedBuildArchitecture = "";
+					state.activeTab = "overview";
+					updateUrlState();
+					render();
+				});
+			}
+
+		}
+
+		function renderStats() {
+			elements.statPackages.textContent = String(state.packages.length);
+			elements.statLatest.textContent = state.release?.Date ? formatDate(state.release.Date, true) : "-";
+		}
+
+		function render() {
+			const filteredPackages = getFilteredPackages();
+			ensureSelectionConsistency(filteredPackages);
+			renderStats();
+			renderList();
+			renderDetail();
+			updateUrlState(true);
+		}
+
+		function bindEvents() {
+			elements.search.addEventListener("input", (event) => {
+				state.filters.query = event.target.value;
+				updateUrlState();
+				render();
+			});
+
+			elements.archFilter.addEventListener("change", (event) => {
+				state.filters.architecture = event.target.value;
+				updateUrlState();
+				render();
+			});
+
+			elements.sortFilter.addEventListener("change", (event) => {
+				state.filters.sort = event.target.value;
+				updateUrlState();
+				render();
+			});
+
+			elements.versionFilter.addEventListener("change", (event) => {
+				state.selectedVersion = event.target.value || "latest";
+				updateUrlState();
+				render();
+			});
+
+			elements.detailArchFilter.addEventListener("change", (event) => {
+				state.selectedBuildArchitecture = event.target.value || "";
+				const pkg = getSelectedPackage();
+				if (state.selectedVersion !== "latest" && !pkg?.versions.some((entry) => entry.version === state.selectedVersion && entry.architectures.includes(state.selectedBuildArchitecture))) {
+					state.selectedVersion = "latest";
+					updateUrlState();
+				}
+				render();
+			});
+
+			elements.refresh.addEventListener("click", () => {
+				initialize(false);
+			});
+
+			elements.autoRefreshToggle.addEventListener("change", (event) => {
+				setAutoRefreshEnabled(event.target.checked);
+			});
+
+			elements.detailBack.addEventListener("click", () => {
+				state.selectedName = "";
+				state.selectedVersion = "latest";
+				state.selectedBuildArchitecture = "";
+				state.activeTab = "overview";
+				updateUrlState();
+				render();
+			});
+
+			for (const button of elements.tabButtons) {
+				button.addEventListener("click", () => {
+					state.activeTab = button.dataset.tab || "overview";
+					updateUrlState();
+					render();
+				});
+			}
+
+			window.addEventListener("popstate", () => {
+				applyUrlState();
+				render();
+			});
+
+			window.addEventListener("resize", () => {
+				renderDetail();
+			});
+		}
+
+		async function checkForBackgroundUpdates() {
+			if (!state.autoRefreshEnabled) {
+				return;
+			}
+			if (state.backgroundUpdateInFlight) {
+				return;
+			}
+			state.backgroundUpdateInFlight = true;
+			try {
+				const [inReleaseText, releaseText, packagesText] = await Promise.all([
+					fetchOptionalText("./InRelease"),
+					fetchOptionalText("./Release"),
+					fetchOptionalText("./Packages")
+				]);
+				if (!packagesText) {
+					return;
+				}
+				const normalizedInRelease = stripInlineSignedText(inReleaseText);
+				const releaseForFingerprint = normalizedInRelease.trim() || releaseText;
+				const nextFingerprint = buildSnapshotFingerprint(releaseForFingerprint, packagesText);
+				if (state.lastSnapshotFingerprint && nextFingerprint !== state.lastSnapshotFingerprint) {
+					await initialize(false, { silent: true });
+				}
+			} catch (error) {
+				console.warn("Background update check failed.", error);
+			} finally {
+				state.backgroundUpdateInFlight = false;
+				updateBackgroundCountdownLine();
+			}
+		}
+
+		function clearBackgroundUpdates() {
+			if (state.backgroundCountdownTimerId) {
+				window.clearInterval(state.backgroundCountdownTimerId);
+				state.backgroundCountdownTimerId = null;
+			}
+			if (state.backgroundUpdateTimerId) {
+				window.clearInterval(state.backgroundUpdateTimerId);
+				state.backgroundUpdateTimerId = null;
+			}
+			state.nextBackgroundUpdateAt = 0;
+		}
+
+		function setAutoRefreshEnabled(enabled) {
+			state.autoRefreshEnabled = Boolean(enabled);
+			elements.autoRefreshToggle.checked = state.autoRefreshEnabled;
+			if (!state.autoRefreshEnabled) {
+				clearBackgroundUpdates();
+				updateBackgroundCountdownLine();
+				return;
+			}
+			restartBackgroundCountdown();
+			ensureBackgroundUpdates();
+		}
+
+		function ensureBackgroundUpdates() {
+			if (!state.autoRefreshEnabled) {
+				clearBackgroundUpdates();
+				updateBackgroundCountdownLine();
+				return;
+			}
+			if (!state.backgroundCountdownTimerId) {
+				state.backgroundCountdownTimerId = window.setInterval(() => {
+					updateBackgroundCountdownLine();
+				}, 1000);
+			}
+
+			if (!state.backgroundUpdateTimerId) {
+				restartBackgroundCountdown();
+				state.backgroundUpdateTimerId = window.setInterval(() => {
+					restartBackgroundCountdown();
+					checkForBackgroundUpdates();
+				}, 60000);
+			}
+		}
+
+		async function initialize(isInitialLoad = true, options = {}) {
+			const silent = Boolean(options.silent);
+			const hadPackages = state.packages.length > 0;
+			if (!silent) {
+				elements.refresh.disabled = true;
+				setStatus("Resolving repository from the current URL…");
+				if (!hadPackages) {
+					elements.listRoot.innerHTML = '<div class="status">Loading remote repository state…</div>';
+					elements.detailRoot.innerHTML = '<div class="status">Loading current APT snapshot…</div>';
+				}
+			}
+
+			try {
+				if (!silent) {
+					state.nextBackgroundUpdateAt = 0;
+					updateBackgroundCountdownLine();
+				}
+
+				await resolveRepoContext();
+				renderRepoContext();
+				applyUrlState();
+				setStatus(`Fetching Release and current Packages for ${state.repo.owner}/${state.repo.repo}…`);
+
+				let usedCache = false;
+				let cachedSnapshot = null;
+				try {
+					const remoteSnapshot = await fetchRemoteSnapshot();
+					applySnapshotData(remoteSnapshot, "Current snapshot");
+					saveSnapshotToCache(remoteSnapshot);
+				} catch (error) {
+					const shouldUseCacheFallback = isInitialLoad || !hadPackages;
+					if (!shouldUseCacheFallback) {
+						throw error;
+					}
+					cachedSnapshot = loadSnapshotFromCache();
+					if (!cachedSnapshot) {
+						throw error;
+					}
+					applySnapshotData(cachedSnapshot, "Cached snapshot");
+					usedCache = true;
+				}
+				restartBackgroundCountdown();
+
+				const pkg = getSelectedPackage();
+				if (!silent) {
+					setStatus(
+						usedCache
+							? `Remote update failed. Using cached snapshot${cachedSnapshot?.savedAt ? ` from ${formatDate(cachedSnapshot.savedAt)}` : ""}. Loaded ${state.packages.length} packages.${pkg ? ` Showing ${pkg.name}.` : ""}`
+							: `Loaded ${state.packages.length} packages from current APT metadata (${state.sources.length} source entries, ${state.releaseIndexes.length} release index checks parsed).${pkg ? ` Showing ${pkg.name}.` : ""}`
+					);
+				} else {
+					setStatus(`Background update applied. Loaded ${state.packages.length} packages.${pkg ? ` Showing ${pkg.name}.` : ""}`);
+				}
+
+				ensureBackgroundUpdates();
+
+				if (isInitialLoad) {
+					updateUrlState(true);
+				}
+			} catch (error) {
+				console.error(error);
+				if (!silent && !state.packages.length) {
+					elements.listRoot.innerHTML = '<div class="warning">Failed to load package metadata from the remote repository.</div>';
+					elements.detailRoot.innerHTML = `<div class="warning">${escapeHtml(error.message || String(error))}</div>`;
+				}
+				setStatus(state.packages.length ? "Refresh failed. Keeping previously loaded data." : "Loading failed.");
+			} finally {
+				if (!silent) {
+					elements.refresh.disabled = false;
+				}
+			}
+		}
+
+		bindEvents();
+		initialize(true);
+	</script>
+</body>
+</html>
